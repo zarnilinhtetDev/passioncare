@@ -1,0 +1,71 @@
+
+/* Custom CSS for centering the form */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* width: 40vw; */
+}
+
+input,
+button {
+    height: 50px;
+    /* outline: none; */
+}
+
+label {
+    font-weight: bold;
+    color: #2297BE;
+}
+
+.border-color-all {
+    border: 1px solid #2297BE !important;
+}
+
+.border-color {
+    border-color: #2297BE;
+}
+
+.center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* text with line */
+.text-with-lines {
+    position: relative;
+    text-align: center;
+}
+
+.text-with-lines::before,
+.text-with-lines::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 1px;
+    background-color: black;
+}
+
+.text-with-lines::before {
+    left: 0;
+}
+
+.text-with-lines::after {
+    right: 0;
+}
+
+.text-in-line {
+    display: inline-block;
+    position: relative;
+    /* padding: 0 30px; */
+    background-color: white;
+    z-index: 1;
+}
+
+.active {
+    color: #2297BE !important;
+    background-color: #DAECF2 !important;
+}
