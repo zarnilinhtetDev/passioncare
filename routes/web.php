@@ -3,9 +3,15 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+<<<<<<< HEAD
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\GoogleController;
+=======
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PatientController;
+>>>>>>> 730457d32a10e8da83ba460e13d365284c3e39ac
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LandingPageController;
