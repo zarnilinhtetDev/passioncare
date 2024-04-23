@@ -163,9 +163,9 @@
                 <form method="POST" action="{{ route('register') }}" id="register" style="display:none;">
                     @csrf
                     <!-- <div class="btn-group col-12 mb-3" style="height: 50px;">
-                                                                                                                                                                                                                                                                                                                                                                                                        <a href="#" class="btn center-text text-white" style="background-color: #2297BE;">Login</a>
-                                                                                                                                                                                                                                                                                                                                                                                                        <a href="#" class="btn center-text border-color-all" style="background-color: #DAECF2; color:#2297BE;">Register</a>
-                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="#" class="btn center-text text-white" style="background-color: #2297BE;">Login</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="#" class="btn center-text border-color-all" style="background-color: #DAECF2; color:#2297BE;">Register</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
                     <div class="form-group mb-3">
                         <label for="name">Name</label>
                         <div class="input-group mt-1">
@@ -235,7 +235,7 @@
                         <span class="text-in-line px-2 px-md-4" style="font-weight:bold;">or Register with</span>
                     </div>
 
-                    <a href="#" class="btn form-control text-primary border-color-all mb-2"><img
+                    <a href="{{ url('auth/google') }}" class="btn form-control text-primary border-color-all mb-2"><img
                             src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
                             style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
 
@@ -250,7 +250,9 @@
         </div>
     </div>
 
-
+    <a href="{{ url('auth/google') }}" class="btn form-control text-primary border-color-all mb-2"><img
+            src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
+            style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
 
     <script>
         const loginBtn = document.getElementById('login-btn');

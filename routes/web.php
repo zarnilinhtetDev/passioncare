@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LandingPageController;
 
 /*
@@ -24,6 +26,11 @@ use App\Http\Controllers\LandingPageController;
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
+
+
+Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.auth');
+Route::get('/google/callback', [GoogleController::class, 'callbackGoogle']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [LandingPageController::class, 'index']);
