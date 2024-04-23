@@ -154,18 +154,13 @@
                         <span class="text-in-line px-2 px-md-4" style="font-weight:bold;">or Login with</span>
                     </div>
 
-                    <a href="#" class="btn form-control text-primary border-color-all mb-2"><img
-                            src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
-                            style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
+
 
                 </form>
 
                 <form method="POST" action="{{ route('register') }}" id="register" style="display:none;">
                     @csrf
-                    <!-- <div class="btn-group col-12 mb-3" style="height: 50px;">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="#" class="btn center-text text-white" style="background-color: #2297BE;">Login</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="#" class="btn center-text border-color-all" style="background-color: #DAECF2; color:#2297BE;">Register</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+
                     <div class="form-group mb-3">
                         <label for="name">Name</label>
                         <div class="input-group mt-1">
@@ -235,24 +230,23 @@
                         <span class="text-in-line px-2 px-md-4" style="font-weight:bold;">or Register with</span>
                     </div>
 
-                    <a href="{{ url('auth/google') }}" class="btn form-control text-primary border-color-all mb-2"><img
-                            src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
-                            style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
 
-                    <div class="form-group" style="display: flex; align-items: center;">
-                        <input type="checkbox" class="" name="terms" placeholder="">&nbsp;&nbsp;
-                        <span for="terms">I agree to the <span class="text-primary">Terms of Use</span> and the <span
-                                class="text-primary">Privacy Policy</span>
-                            for my account.</span>
-                    </div>
+
                 </form>
+                <a href="{{ url('auth/google') }}" class="btn form-control text-primary border-color-all mb-2"><img
+                        src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
+                        style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
+                <div class="form-group" style="display: flex; align-items: center;">
+                    <input type="checkbox" class="" name="terms" placeholder="">&nbsp;&nbsp;
+                    <span for="terms">I agree to the <span class="text-primary">Terms of Use</span> and the <span
+                            class="text-primary">Privacy Policy</span>
+                        for my account.</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <a href="{{ url('auth/google') }}" class="btn form-control text-primary border-color-all mb-2"><img
-            src="{{ asset('img/googlelogo.jpg') }}" alt="google logo" width="30px" height="30px"
-            style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
+
 
     <script>
         const loginBtn = document.getElementById('login-btn');
