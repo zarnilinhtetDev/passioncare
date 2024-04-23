@@ -8,6 +8,8 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\LandingPageController;
 
 /*
@@ -46,4 +48,11 @@ Route::middleware('auth')->group(function () {
     //
     Route::get('ticket', [TicketController::class, 'index']);
     Route::get('/reason', [TicketController::class, 'reason']);
+    //Doctor
+    Route::get('/doctor', [DoctorController::class, 'index']);
+    Route::get('/doctor_edit', [DoctorController::class, 'edit']);
+
+    //Hospital
+    Route::get('/hospital', [HospitalController::class, 'index']);
+    Route::get('/hospital_edit', [HospitalController::class, 'edit']);
 });
