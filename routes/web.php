@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\LandingPageController;
 
 /*
@@ -27,4 +29,12 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [LandingPageController::class, 'index']);
+
+    //Doctor
+    Route::get('/doctor', [DoctorController::class, 'index']);
+    Route::get('/doctor_edit', [DoctorController::class, 'edit']);
+
+    //Hospital
+    Route::get('/hospital', [HospitalController::class, 'index']);
+    Route::get('/hospital_edit', [HospitalController::class, 'edit']);
 });
