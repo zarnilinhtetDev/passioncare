@@ -18,6 +18,7 @@ class Admin extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
+
             'email_verified_at' => now(),
             'type' => '1',
             'level' => 'Manager',

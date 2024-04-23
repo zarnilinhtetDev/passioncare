@@ -229,5 +229,3 @@
                 </div>
             </div>
         </section>
-
-    </div>
