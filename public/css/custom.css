@@ -1,188 +1,221 @@
+#image {
+    width: 80% !important;
+    border-radius: 0% !important;
+}
 
-    #image{
-        width: 80% !important;
-        border-radius: 0% !important;
-        }
-        .textboxText{
-            font-size: 1.75rem;
-        }
-        .wow-box{
-            width: 50% !important;
-            height: 150px !important;
-        }
-        .wowInfo:hover{
-            background-color: #87dde1;
-        }
-        .wowInfo{
-            width: 100% !important;
-            height: 100% !important;
-            border-radius: 10px !important;
-        }
-        .text-box{
-            height: 150px !important;
-            width: 100% !important;
-            /* overflow: auto;
+.textboxText {
+    font-size: 1.75rem;
+}
+
+.wow-box {
+    width: 50% !important;
+    height: 150px !important;
+}
+
+.wowInfo:hover {
+    background-color: #87dde1;
+}
+
+.wowInfo {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+}
+
+.text-box {
+    height: 150px !important;
+    width: 100% !important;
+    /* overflow: auto;
             scroll-behavior: smooth;
             scrollbar-width: none; */
-        }
-        #myCarousel{
-            margin: 0 !important;
-        }
-        .item{
-            border-radius: 0% !important;
-        }
-        li a:hover{
-            color: #e6e6e6 !important;
-        }
-        @media only screen and (max-width:1440px){
-        .dropdown-menu{
-            width: 50px !important;
-            margin-right: 5rem !important;
-        }
-        }
-        @media only screen and (max-width:1024px){
-        .changelogout{
-            width: 100px !important;
-        }
-        }
-        @media (min-width:910px) and (max-width:915px) {
-            .text-box{
-                height: 200px !important;
-            }
-            .textboxText{
-                font-size: 14px;
-            }
-            .navbar-expand-lg {
-            display: none !important;
-        }
-        .wow-box{
-            width: 100% !important;
-            height: 150px !important;
-        }
-        .scrollup {
-            display: none !important;
-        }
-        #bottom-nav {
-            display:flex !important;
-        }
-        .bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        background-color: #333;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        z-index: 1000;
-        }
+}
 
-        .bottom-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-        }
+.pop-box {
+    width: 100% !important;
+    height: 100px;
+}
 
-        .bottom-nav a i {
-            font-size: 24px;
-        }
-        }
-        @media only screen and (max-width:820px) {
-            .navbar-expand-lg {
-            display: none !important;
-        }
-        .wow-box{
-            width: 100% !important;
-            height: 150px !important;
-        }
-        .scrollup {
-            display: none !important;
-        }
-        #bottom-nav {
-            display:flex !important;
-        }
-        .bottom-nav {
-        display: flex;
-        justify-content: space-around;
-        background-color: #333;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        z-index: 1000;
-        }
+#myCarousel {
+    margin: 0 !important;
+}
 
-        .bottom-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-        }
+.item {
+    border-radius: 0% !important;
+}
 
-        .bottom-nav a i {
-            font-size: 24px;
-        }
-        }
-        @media only screen and (min-width:769px) {
-            #bottom-nav {
-            display: none;
-        }
-        }
-        @media only screen and (max-width:768px){
-        .textboxText{
-            font-size: 14px !important;
-        }
-        .wow-box{
-            width: 100% !important;
-            height: 120px !important;
-        }
-        #myCarousel {
-            margin-left: 0;
-        }
+li a:hover {
+    color: #e6e6e6 !important;
+}
 
-        .navbar-expand-lg {
-            display: none;
-        }
+@media only screen and (max-width:1440px) {
+    .dropdown-menu {
+        width: 50px !important;
+        margin-right: 5rem !important;
+    }
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+@media only screen and (max-width:1024px) {
+    .changelogout {
+        width: 100px !important;
+    }
+}
 
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .bottom-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-        }
-
-        .bottom-nav a i {
-            font-size: 24px;
-        }
-        .scrollup {
-            display: none !important;
-        }
-        }
-        @media only screen and (max-width:425px){
-        .text-box{
-            height: 150px !important;
-        }
-        .textboxText{
-            font-size: 10px !important;
-        }
+@media (min-width:910px) and (max-width:915px) {
+    .text-box {
+        height: 200px !important;
     }
 
-        @media only screen and (max-width:320px){
-        .text-box{
-            height: 120px !important;
-        }
-        }
+    .textboxText {
+        font-size: 14px;
+    }
+
+    .navbar-expand-lg {
+        display: none !important;
+    }
+
+    .wow-box {
+        width: 100% !important;
+        height: 150px !important;
+    }
+
+    .scrollup {
+        display: none !important;
+    }
+
+    #bottom-nav {
+        display: flex !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .bottom-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+    }
+
+    .bottom-nav a i {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width:820px) {
+    .navbar-expand-lg {
+        display: none !important;
+    }
+
+    .wow-box {
+        width: 100% !important;
+        height: 150px !important;
+    }
+
+    .scrollup {
+        display: none !important;
+    }
+
+    #bottom-nav {
+        display: flex !important;
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .bottom-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+    }
+
+    .bottom-nav a i {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width:769px) {
+    #bottom-nav {
+        display: none;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .textboxText {
+        font-size: 14px !important;
+    }
+
+    .wow-box {
+        width: 100% !important;
+        height: 120px !important;
+    }
+
+    #myCarousel {
+        margin-left: 0;
+    }
+
+    .navbar-expand-lg {
+        display: none;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .bottom-nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+    }
+
+    .bottom-nav a i {
+        font-size: 24px;
+    }
+
+    .scrollup {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width:425px) {
+    .text-box {
+        height: 150px !important;
+    }
+
+    .textboxText {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .text-box {
+        height: 120px !important;
+    }
+}

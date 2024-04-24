@@ -5,11 +5,11 @@
 
     <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;" class="justify-content-end">
 
-    @include('landing_page.nav')
+        @include('landing_page.nav')
 
-    @include('landing_page.slide_image')
+        @include('landing_page.slide_image')
 
-    @include('landing_page.smallSlide')
+        @include('landing_page.smallSlide')
         <!-- Section: boxes -->
         <section class="mt-5">
             <div class="container mt-5">
@@ -28,15 +28,33 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-5">
-                    <div class="card text-box">
-                        <div class="card-body textboxText text-center lh-lg">
-                            ဆရာဝန်နှင့် တိုင်ပင်ဆွေးနွေးရန် ချိန်းဆိုထားပါသည်။ <br>
-                            သင်ရှေ့တွင် လူနာ (၅) ဦးရှိပါသဖြင့် ခန့်မှန်းကြာချိန် (  ) နာရီ  (  ) မိနစ်စောင့်ဆိုင်းရမည် ဖြစ်ပါသည်။ <br>
-                            ဆရာဝန်မှ ဖုန်းဖြင့်ပြန်လည်ဆက်သွယ်ပေးမည်ဖြစ်ပါ၍ ခေတ္တစောင့်ဆိုင်းပေးပါရန် အသိပေးအပ်ပါသည်။
+                    <div class="">
+
+                        @if ($patient)
+                        <div class="card text-box">
+                            <div class="card-body textboxText text-center lh-lg">
+                                ဆရာဝန်နှင့် တိုင်ပင်ဆွေးနွေးရန် ချိန်းဆိုထားပါသည်။ <br>
+                                သင်ရှေ့တွင် လူနာ (၅) ဦးရှိပါသဖြင့် ခန့်မှန်းကြာချိန် ( ) နာရီ ( ) မိနစ်စောင့်ဆိုင်းရမည် ဖြစ်ပါသည်။ <br>
+                                ဆရာဝန်မှ ဖုန်းဖြင့်ပြန်လည်ဆက်သွယ်ပေးမည်ဖြစ်ပါ၍ ခေတ္တစောင့်ဆိုင်းပေးပါရန် အသိပေးအပ်ပါသည်။
+                            </div>
+
+                        </div> @else
+                        <div class="card pop-box">
+                            <div class="card-body textboxText text-center lh-lg">
+                                လတ်တလော အချက်အလက်များ မရှိသေးပါ။ သင့်တွင် ခံစားနေရသော ရောဂါလက္ခဏာများရှိလျှင် ဆရာဝန်နှင့်တိုင်ပင်ဆွေးနွေးရန်
+                                ယခုပဲဆက်သွယ်ပါ။ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('reason') }}" class="btn justify-content-end" style="background-color:#2297BE;color:white">ဆက်သွယ်မည်</a>
+                            </div>
                         </div>
+                        <div class="card pop-box my-2">
+                            <div class="card-body textboxText text-center lh-lg">
+                                ဆေးရုံ၊ ဆေးခန်း ဘိုကင်တင်ရန်အခက်အခဲရှိပါက ERS မှတာဝန်ယူဆောင်ရွက်ပေးမည် ဖြစ်ပါသည်။&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('booking_req') }}" class="btn justify-content-end" style="background-color:#2297BE;color:white">ဆက်သွယ်မည်</a>
+                            </div>
+
+
+                        </div>
+                        @endif
                     </div>
                 </div>
-            </div>
 
         </section>
 

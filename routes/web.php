@@ -3,20 +3,17 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
-use App\Http\Controllers\TicketController;
-use App\Http\Controllers\PatientController;
-use App\Http\Controllers\GoogleController;
-=======
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\TicketController;
+
 use App\Http\Controllers\PatientController;
->>>>>>> 730457d32a10e8da83ba460e13d365284c3e39ac
+use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\HospitalBookingController;
+use App\Http\Controllers\HosptialBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +39,7 @@ Route::get('/google/callback', [GoogleController::class, 'callbackGoogle']);
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [LandingPageController::class, 'index']);
+    Route::get('/home', [LandingPageController::class, 'index'])->name('home');
 
 
     //Profile
@@ -50,9 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profile_edit', [PatientController::class, 'profile_edit']);
     Route::post('profile_update/{id}', [PatientController::class, 'profile_update']);
 
-    //
-    Route::get('ticket', [TicketController::class, 'index']);
-    Route::get('/reason', [TicketController::class, 'reason']);
+
     //Doctor
     Route::get('/doctor', [DoctorController::class, 'index']);
     Route::get('/doctor_edit', [DoctorController::class, 'edit']);
@@ -60,4 +55,10 @@ Route::middleware('auth')->group(function () {
     //Hospital
     Route::get('/hospital', [HospitalController::class, 'index']);
     Route::get('/hospital_edit', [HospitalController::class, 'edit']);
+
+    //Booking
+    Route::get('booking_req', [HospitalBookingController::class, 'index']);
+    Route::post('booking_save', [HospitalBookingController::class, 'save']);
+    Route::get('ticket', [HospitalBookingController::class, 'ticket_view']);
+    Route::get('reason', [HospitalBookingController::class, 'booking_reason_view']);
 });
