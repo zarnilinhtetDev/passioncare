@@ -150,7 +150,7 @@
                                         <label for="doctor_name" class="">Doctor
                                             Name</label>
                                         <input type="text" class="form-control" id="doctor_name" name="doctor_name"
-                                            placeholder="Enter Doctor Name">
+                                            placeholder="Enter Doctor Name" required>
                                     </div>
                                 </div>
 
@@ -159,7 +159,7 @@
                                         <label for="doctor_specialities">Specialities:</label>
 
                                         <input type="text" class="form-control" id="doctor_specialities"
-                                            name="doctor_specialities" placeholder="Enter  Specialities">
+                                            name="doctor_specialities" placeholder="Enter  Specialities" required>
                                     </div>
                                 </div>
 
@@ -167,7 +167,7 @@
                                     <div class="form-group">
                                         <label for="doctor_experience">Experience</label>
                                         <input type="text" class="form-control" id="doctor_experience"
-                                            name="doctor_experience" placeholder="Enter Doctor Experience">
+                                            name="doctor_experience" placeholder="Enter Doctor Experience" required>
                                     </div>
                                 </div>
 
@@ -177,7 +177,7 @@
                                             Name</label>
 
                                         <input type="text" class="form-control" id="hospital_name"
-                                            name="hospital_name" placeholder="Enter Hospital Name">
+                                            name="hospital_name" placeholder="Enter Hospital Name" required>
 
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                         <label for="doctor_city">City/Township</label>
 
                                         <input type="text" class="form-control" id="doctor_city"
-                                            name="doctor_city" placeholder="Enter City/Township">
+                                            name="doctor_city" placeholder="Enter City/Township" required>
 
                                     </div>
                                 </div>
@@ -200,12 +200,12 @@
                                             class="col-sm-1 col-form-label">From</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" id="doctor_charges_fees_from"
-                                                name="doctor_charges_fees_from">
+                                                name="doctor_charges_fees_from" required>
                                         </div>
                                         <label for="doctor_charges_fees_to" class="col-sm-1 col-form-label">To</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" id="doctor_charges_fees_to"
-                                                name="doctor_charges_fees_to">
+                                                name="doctor_charges_fees_to" required>
                                         </div>
                                     </div>
                                 </div>

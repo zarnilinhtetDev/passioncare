@@ -151,7 +151,7 @@
                                         Name</label>
 
                                     <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                                        placeholder="Enter Hospital Name">
+                                        placeholder="Enter Hospital Name" required>
 
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                         Number</label>
 
                                     <input type="tel" class="form-control" id="hospital_phone_number"
-                                        name="hospital_phone_number" placeholder="Enter Phone Number">
+                                        name="hospital_phone_number" placeholder="Enter Phone Number" required>
 
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
 
     </div>
 
-    <footer id="bottom-nav">
+    <div id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
             <a href="#">
                 <i class="fas fa-home"></i>
@@ -278,7 +278,7 @@
             </a> --}}
 
         </div>
-    </footer>
+    </div>
     @include('landing_page.footer_section')
 
 </body>
