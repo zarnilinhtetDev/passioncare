@@ -75,7 +75,7 @@
     /* Modal Content/Box */
     .modal-content {
         background-color: #fefefe;
-        margin: 15% auto;
+        margin: 5% auto;
         /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
@@ -97,8 +97,7 @@
         text-decoration: none;
         cursor: pointer;
     }
-</style>
-<style>
+
     #example-1_filter {
         text-align: left;
 
@@ -110,6 +109,15 @@
 
     #example-1_paginate {
         text-align: left;
+    }
+
+    body {
+        font-size: 130%;
+    }
+
+    .btn {
+        padding: 0.50rem 1.3rem;
+        font-size: 1.10rem;
     }
 </style>
 
@@ -129,81 +137,82 @@
                 <button id="openModal" class="btn btn-primary mt-5">Doctor Reigster</button>
 
                 <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <span id="closeModal" class="close">&times;</span>
-                        <h2>Doctor Register</h2>
-                        <form action="" class="mt-5">
-
+                    <div class="modal-content  rounded-4">
+                        <div class="modal-header">
+                            <h2>Doctor Register</h2>
+                            <span id="closeModal" class="close">&times;</span>
+                        </div>
+                        <form action="{{ url('doctor_register') }}" method="POST" class="mt-5">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group row">
-
-                                        <label for="doctor_name" class="col-sm-2 col-form-label">Doctor
+                                    <div class="form-group">
+                                        <label for="doctor_name" class="">Doctor
                                             Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="doctor_name"
-                                                name="doctor_name" placeholder="Search Doctor Name">
-                                        </div>
+                                        <input type="text" class="form-control" id="doctor_name" name="doctor_name"
+                                            placeholder="Enter Doctor Name">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-group row">
+                                    <div class="form-group">
+                                        <label for="doctor_specialities">Specialities:</label>
 
-                                        <label for="specialities" class="col-sm-2 col-form-label">Specialities:</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="specialities"
-                                                name="specialities" placeholder="Search Specialities">
-                                        </div>
+                                        <input type="text" class="form-control" id="doctor_specialities"
+                                            name="doctor_specialities" placeholder="Enter  Specialities">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-group row">
+                                    <div class="form-group">
+                                        <label for="doctor_experience">Experience</label>
+                                        <input type="text" class="form-control" id="doctor_experience"
+                                            name="doctor_experience" placeholder="Enter Doctor Experience">
+                                    </div>
+                                </div>
 
-                                        <label for="hospital_name" class="col-sm-2 col-form-label">Hospital
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="hospital_name">Hospital
                                             Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="hospital_name"
-                                                name="hospital_name" placeholder="Search Hospital Name">
-                                        </div>
+
+                                        <input type="text" class="form-control" id="hospital_name"
+                                            name="hospital_name" placeholder="Enter Hospital Name">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="doctor_city">City/Township</label>
+
+                                        <input type="text" class="form-control" id="doctor_city"
+                                            name="doctor_city" placeholder="Enter City/Township">
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-
-                                        <label for="city" class="col-sm-2 col-form-label">City/Township</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="city" name="city"
-                                                placeholder="Search City/Township">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-
-                                        <label for="inputPassword" class="col-sm-3 col-form-label">Charges
+                                        <label for="inputPassword">Charges
                                             Fees:</label>
-
-                                        <label for="charges_fees_from" class="col-sm-1 col-form-label">From</label>
+                                        <label for="doctor_charges_fees_from"
+                                            class="col-sm-1 col-form-label">From</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="charges_fees_from"
-                                                name="charges_fees_from">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_from"
+                                                name="doctor_charges_fees_from">
                                         </div>
-                                        <label for="charges_fees_to" class="col-sm-1 col-form-label">To</label>
+                                        <label for="doctor_charges_fees_to" class="col-sm-1 col-form-label">To</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="charges_fees_to"
-                                                name="charges_fees_to">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_to"
+                                                name="doctor_charges_fees_to">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-5 justify-content-end d-flex" style="height: 20%">
+                                <div class="justify-content-end d-flex" style="height: 20%">
 
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
 
@@ -216,12 +225,13 @@
 
                 <div class="card shadow rounded-3" style="margin-top: 2%">
                     <div class="card-body ">
-                        <form>
+                        <form action="{{ url('doctor_search') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
 
-                                        <label for="doctor_name" class="col-sm-2 col-form-label">Doctor
+                                        <label for="doctor_name" class="col-sm-3 col-form-label">Doctor
                                             Name</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="doctor_name"
@@ -232,20 +242,18 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-
-                                        <label for="specialities"
-                                            class="col-sm-2 col-form-label">Specialities:</label>
+                                        <label for="doctor_specialities"
+                                            class="col-sm-3 col-form-label">Specialities:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="specialities"
-                                                name="specialities" placeholder="Search Specialities">
+                                            <input type="text" class="form-control" id="doctor_specialities"
+                                                name="doctor_specialities" placeholder="Search Specialities">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-
-                                        <label for="hospital_name" class="col-sm-2 col-form-label">Hospital
+                                        <label for="hospital_name" class="col-sm-3 col-form-label">Hospital
                                             Name</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="hospital_name"
@@ -257,13 +265,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group row">
 
-                                        <label for="city" class="col-sm-2 col-form-label">City/Township</label>
+                                        <label for="doctor_city" class="col-sm-3 col-form-label">City/Township</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="city" name="city"
-                                                placeholder="Search City/Township">
+                                            <input type="text" class="form-control" id="doctor_city"
+                                                name="doctor_city" placeholder="Search City/Township">
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -271,15 +280,16 @@
                                         <label for="inputPassword" class="col-sm-3 col-form-label">Charges
                                             Fees:</label>
 
-                                        <label for="charges_fees_from" class="col-sm-1 col-form-label">From</label>
+                                        <label for="doctor_charges_fees_from"
+                                            class="col-sm-1 col-form-label">From</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="charges_fees_from"
-                                                name="charges_fees_from">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_from"
+                                                name="doctor_charges_fees_from">
                                         </div>
-                                        <label for="charges_fees_to" class="col-sm-1 col-form-label">To</label>
+                                        <label for="doctor_charges_fees_to" class="col-sm-1 col-form-label">To</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="charges_fees_to"
-                                                name="charges_fees_to">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_to"
+                                                name="doctor_charges_fees_to">
                                         </div>
                                     </div>
                                 </div>
@@ -309,30 +319,24 @@
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Fees</th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">TownShip
                                 </th>
-                                <th style="background-color: #F0F3F8;" scope="col" class="text-center">Action
-                                </th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="text-center" scope="row">1</th>
-                                <td class="text-center">Dr.Saw Htoo</td>
-                                <td class="text-center">Surgeon</td>
+                            @foreach ($doctors as $key => $doctor)
+                                <tr>
+                                    <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                    <td class="text-center">{{ $doctor->doctor_name }}</td>
+                                    <td class="text-center">{{ $doctor->doctor_specialities }}</td>
 
-                                <td class="text-center">5 yrs</td>
-                                <td class="text-center">OSC Hsp</td>
-                                <td class="text-center">8000 ks</td>
-                                <td class="text-center">Ygn</td>
-                                <td class="text-center">
+                                    <td class="text-center">{{ $doctor->doctor_experience }}</td>
+                                    <td class="text-center">{{ $doctor->hospital_name }}</td>
+                                    <td class="text-center">{{ $doctor->doctor_charges_fees_from }} -
+                                        {{ $doctor->doctor_charges_fees_to }}</td>
+                                    <td class="text-center">{{ $doctor->doctor_city }}</td>
 
-                                    <a href="{{ url('') }}" class="btn btn-primary btn-sm"><i
-                                            class="fa-solid fa-eye"></i></a>
-
-                                    <a href="{{ url('doctor_edit') }}" class="btn btn-success btn-sm"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-
-                                </td>
-                            </tr>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -344,7 +348,36 @@
     </div>
 
     </div>
+    <footer id="bottom-nav">
+        <div class="bottom-nav" style="background-color: #337AB7">
+            <a href="#">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="#">
+                <i class="fas fa-search"></i>
+                Search
+            </a>
+            <a href="#">
+                <i class="fas fa-plus"></i>
+                Add
+            </a>
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
 
+            {{-- <a href="#" class="text-dark">
+                <i class="fa fa-angle-up">
+                    <i class="fa fa-arrow-up"></i>
+            </a> --}}
+
+        </div>
+    </footer>
     @include('landing_page.footer_section')
 
 </body>
@@ -357,7 +390,8 @@
     $(document).ready(function() {
         $('#example-1').DataTable({
             "lengthChange": false,
-            "searching": false
+            "searching": false,
+            "pageLength": 10
         });
     });
 </script>

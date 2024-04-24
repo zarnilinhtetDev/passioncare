@@ -50,10 +50,13 @@ Route::middleware('auth')->group(function () {
 
     //Doctor
     Route::get('/doctor', [DoctorController::class, 'index']);
+    Route::post('/doctor_register', [DoctorController::class, 'store']);
+    Route::post('/doctor_search', [DoctorController::class, 'search']);
     Route::get('/doctor_edit', [DoctorController::class, 'edit']);
 
     //Hospital
     Route::get('/hospital', [HospitalController::class, 'index']);
+    Route::post('/hospital_register', [HospitalController::class, 'store']);
     Route::get('/hospital_edit', [HospitalController::class, 'edit']);
 
     //Booking
