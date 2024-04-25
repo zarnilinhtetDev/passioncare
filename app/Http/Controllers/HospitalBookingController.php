@@ -40,15 +40,10 @@ class HospitalBookingController extends Controller
         }
         if ($no >= 10000 && $no < 100000) {
             $ticket_no = 'ERS0' . $no;
-        } else {
-            $ticket_no = 'ERS' . $no;
         }
         return view('hospital_booking.ticket', compact('ticket_no'));
     }
-    public function tickiet_view()
-    {
-        return view('hospital_booking.ticket');
-    }
+
     public function booking_reason_view()
     {
         return view('hospital_booking.booking_reason');

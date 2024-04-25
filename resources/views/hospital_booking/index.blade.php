@@ -65,6 +65,33 @@
             </div>
             {{-- Modal End --}}
         </section>
+        <div class="bottom-nav" style="background-color: #337AB7" id="bottom-nav">
+            <a href="#">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="#">
+                <i class="fas fa-search"></i>
+                Search
+            </a>
+            <a href="#">
+                <i class="fas fa-plus"></i>
+                Add
+            </a>
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
 
+            <a href="#" class="text-dark">
+                {{-- <i class="fa fa-angle-up"> --}}
+                <i class="fa fa-arrow-up"></i>
+            </a>
+
+        </div>
 
         @include('landing_page.footer_section')

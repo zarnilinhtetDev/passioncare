@@ -59,6 +59,11 @@ Route::middleware('auth')->group(function () {
     //Booking
     Route::get('booking_req', [HospitalBookingController::class, 'index']);
     Route::post('booking_save', [HospitalBookingController::class, 'save']);
-    Route::get('ticket', [HospitalBookingController::class, 'ticket_view']);
+
     Route::get('reason', [HospitalBookingController::class, 'booking_reason_view']);
+    Route::post('patient_health_record_store', [PatientController::class, 'patient_health_record_store']);
+
+    //Ticket
+    Route::get('ticket_info', [TicketController::class, 'ticket_info']);
+    Route::get('ticket', [TicketController::class, 'index']);
 });

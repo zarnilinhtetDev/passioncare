@@ -2,9 +2,8 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
     <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;">
-        @include('landing_page.nav')
         <section class="container-fluid">
-            <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+            <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-lg-8 p-0">
                     <div class="card">
                         <div class="mt-5">
@@ -79,5 +78,33 @@
                 </div>
             </div>
         </section>
+        <div class="bottom-nav" style="background-color: #337AB7" id="bottom-nav">
+            <a href="#">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="#">
+                <i class="fas fa-search"></i>
+                Search
+            </a>
+            <a href="#">
+                <i class="fas fa-plus"></i>
+                Add
+            </a>
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
+
+            <a href="#" class="text-dark">
+                {{-- <i class="fa fa-angle-up"> --}}
+                <i class="fa fa-arrow-up"></i>
+            </a>
+
+        </div>
     </div>
     @include('landing_page.footer_section')

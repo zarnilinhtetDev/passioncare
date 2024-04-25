@@ -94,6 +94,7 @@ li a:hover {
         position: fixed;
         bottom: 0;
         width: 100%;
+
         z-index: 1000;
     }
 
@@ -144,7 +145,7 @@ li a:hover {
     }
 
     .bottom-nav a i {
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 
@@ -192,11 +193,11 @@ li a:hover {
     .bottom-nav a {
         color: white;
         text-decoration: none;
-        padding: 10px;
+        padding: 8px;
     }
 
     .bottom-nav a i {
-        font-size: 24px;
+        font-size: 15px;
     }
 
     .scrollup {

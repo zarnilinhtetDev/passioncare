@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Models\PatientAddress;
+use App\Models\HospitalBooking;
 use App\Models\PatientInsurance;
 use App\Models\PatientInitialTest;
+use App\Models\PatientHealthRecord;
 use App\Models\PatientEmergencyInfo;
 
 class PatientController extends Controller
@@ -114,5 +116,40 @@ class PatientController extends Controller
             // For example, you can log the error or return a response indicating failure
             return response()->json(['error' => 'Failed to insert data.' . $e], 500);
         }
+    }
+
+    public function patient_health_record_store(Request $request)
+    {
+        $patient_health_record = new PatientHealthRecord();
+        $patient_health_record->patient_id = auth()->user()->id;
+        $patient_health_record->description = $request->description;
+
+        $files = $request->file('file_name');
+
+        if ($files) {
+            $imagename = time() . '.' . $files->getClientOriginalExtension();
+            $files->move('HealthRecord', $imagename);
+            $patient_health_record->file =  $imagename;
+        }
+        $patient_health_record->save();
+        $ticket_no = '';
+        $no = count(HospitalBooking::all());
+
+        if ($no < 10) {
+            $ticket_no = 'ERS00000' . $no + 1;
+        }
+        if ($no >= 10 && $no < 100) {
+            $ticket_no = 'ERS0000' . $no + 1;
+        }
+        if ($no >= 100 && $no < 1000) {
+            $ticket_no = 'ERS000' . $no + 1;
+        }
+        if ($no >= 1000 && $no < 10000) {
+            $ticket_no = 'ERS00' . $no + 1;
+        }
+        if ($no >= 10000 && $no < 100000) {
+            $ticket_no = 'ERS0' . $no + 1;
+        }
+        return view('ticket.ticket', compact('ticket_no'));
     }
 }

@@ -14,17 +14,23 @@
         <section class="mt-5">
             <div class="container mt-5">
                 <div class="row d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 gap-lg-0">
+
                     <div class="wow-box">
-                        <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
-                            <i class="fa fa-check fa-3x text-white pb-3 pt-2"></i>
-                            <div class="font pb-2 text-white fs-3" style="font-weight: bold;">ဆရာဝန်နဲ့ တိုင်ပင်ဆွေးနွေးရန်</div>
-                        </div>
+                        <a href="{{url('reason')}}" style="text-decoration: none;">
+                            <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
+                                <i class="fa fa-check fa-3x text-white pb-3 pt-2"></i>
+                                <div class="font pb-2 text-white fs-3" style="font-weight: bold;">ဆရာဝန်နဲ့ တိုင်ပင်ဆွေးနွေးရန်</div>
+                            </div>
+                        </a>
                     </div>
+
                     <div class="wow-box">
-                        <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
-                            <i class="fa fa-list-alt fa-3x text-white pb-3 pt-2"></i>
-                            <div class="font pb-2 text-white fs-3" style="font-weight: bold">ဆေးရုံဆေးခန်း ဘိုကင်တင်ရန်</div>
-                        </div>
+                        <a href="{{url('booking_req')}}" style="text-decoration: none;">
+                            <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
+                                <i class="fa fa-list-alt fa-3x text-white pb-3 pt-2"></i>
+                                <div class="font pb-2 text-white fs-3" style="font-weight: bold">ဆေးရုံဆေးခန်း ဘိုကင်တင်ရန်</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-5">
