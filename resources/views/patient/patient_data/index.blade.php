@@ -1,13 +1,13 @@
 @include('landing_page.header_section')
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom" class="bg-light">
-    <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;">
+    <div id="wrapper" style=" font-family: Arial, Helvetica, sans-serif;">
 
         @include('landing_page.nav')
         <div id="exTab1" class="container ">
             <div class="tab-content clearfix  ">
                 <div style="margin-top: 5%">
-                    <section class="container-fluid">
+                    <section class="container">
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="row pb-5">
                                 <div class="col-12 col-md-6 d-flex justify-content-center mt-4">

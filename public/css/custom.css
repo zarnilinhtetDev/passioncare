@@ -203,6 +203,11 @@ li a:hover {
     .scrollup {
         display: none !important;
     }
+
+    #forget_password {
+        font-size: 8px !important;
+    }
+
 }
 
 @media only screen and (max-width:425px) {
@@ -213,10 +218,18 @@ li a:hover {
     .textboxText {
         font-size: 10px !important;
     }
+
+    #forget_password {
+        font-size: 8px !important;
+    }
 }
 
 @media only screen and (max-width:320px) {
     .text-box {
         height: 120px !important;
+    }
+
+    #forget_password {
+        font-size: 8px !important;
     }
 }

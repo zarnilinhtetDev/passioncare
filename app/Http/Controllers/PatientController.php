@@ -22,7 +22,7 @@ class PatientController extends Controller
         $insurance = PatientInsurance::where('patient_id', auth()->user()->id)->first();
         $initial = PatientInitialTest::where('patient_id', auth()->user()->id)->first();
         $p_address = PatientAddress::where('patient_id', auth()->user()->id)->first();
-        return view('patient.index', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        return view('patient.patient_data.index', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
     }
     //Profile Edit
     public function profile_edit()
@@ -33,7 +33,7 @@ class PatientController extends Controller
         $initial = PatientInitialTest::where('patient_id', auth()->user()->id)->first();
         $p_address = PatientAddress::where('patient_id', auth()->user()->id)->first();
         $user = auth()->user();
-        return view('patient.profile_edit', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        return view('patient.patient_data.profile_edit', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
     }
     //Profile Update
     public function profile_update(Request $request, $id)
@@ -150,6 +150,6 @@ class PatientController extends Controller
         if ($no >= 10000 && $no < 100000) {
             $ticket_no = 'ERS0' . $no + 1;
         }
-        return view('ticket.ticket', compact('ticket_no'));
+        return view('patient.ticket.ticket', compact('ticket_no'));
     }
 }

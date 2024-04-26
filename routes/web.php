@@ -66,4 +66,8 @@ Route::middleware('auth')->group(function () {
     //Ticket
     Route::get('ticket_info', [TicketController::class, 'ticket_info']);
     Route::get('ticket', [TicketController::class, 'index']);
+
+
+    //MO
+    Route::get('mo_home', [HomeController::class, 'mo_home']);
 });

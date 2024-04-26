@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HospitalBooking;
 use App\Models\Patient;
-use Illuminate\Http\Request;
+
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-        $patient = Patient::find(auth()->user()->id);
+        $patient = Patient::where('user_id', auth()->user()->id)->first();
+        $bookings = HospitalBooking::where('patient_id', auth()->user()->id)->get();
 
-        return view('master.index', compact('patient'));
+        return view('master.index', compact('patient', 'bookings'));
     }
 }

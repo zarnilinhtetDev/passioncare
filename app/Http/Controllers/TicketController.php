@@ -8,10 +8,10 @@ class TicketController extends Controller
 {
     public function index()
     {
-        return view('ticket.ticket');
+        return view('patient.ticket.ticket');
     }
     public function tickiet_info()
     {
-        return view('ticket.ticket_info');
+        return view('patient.ticket.ticket_info');
     }
 }

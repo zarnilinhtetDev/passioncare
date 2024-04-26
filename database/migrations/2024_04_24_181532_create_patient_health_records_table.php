@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('patient_id')->nullable();
             $table->string('description')->nullable();
             $table->string('file')->nullable();
-
             $table->timestamps();
         });
     }
