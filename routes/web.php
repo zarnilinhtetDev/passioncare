@@ -14,6 +14,8 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\HospitalBookingController;
 use App\Http\Controllers\HosptialBookingController;
+use App\Http\Controllers\MoDoctorController;
+use App\Http\Controllers\MoHospitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ use App\Http\Controllers\HosptialBookingController;
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Auth::routes();
+Route::get('/forget_password', [LoginController::class, 'forgetPassword'])->name('forget_password');
 
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.auth');
 Route::get('/google/callback', [GoogleController::class, 'callbackGoogle']);
@@ -50,18 +53,39 @@ Route::middleware('auth')->group(function () {
 
     //Doctor
     Route::get('/doctor', [DoctorController::class, 'index']);
-    Route::post('/doctor_register', [DoctorController::class, 'store']);
-    Route::post('/doctor_search', [DoctorController::class, 'search']);
-    Route::get('/doctor_edit', [DoctorController::class, 'edit']);
+    Route::post('/doctor_search', [DoctorController::class, 'search'])->name('doctor_search');
 
-    //Hospital
+    //Mo Doctor
+    Route::get('/mo_doctor', [MoDoctorController::class, 'index'])->name('doctor');
+    Route::post('/doctor_register', [MoDoctorController::class, 'store'])->name('doctor_register');
+    Route::post('/mo_doctor_search', [MoDoctorController::class, 'search'])->name('mo_doctor_search');
+    Route::get('/doctor_edit/{id}', [MoDoctorController::class, 'edit'])->name('doctor#doctor_edit');
+    Route::get('/deleteDocter/{id}', [MoDoctorController::class, 'deleteDocter'])->name('doctor#deleteDocter');
+    Route::post('/updateDoctor/{id}', [MoDoctorController::class, 'updateDoctor'])->name('updateDoctor');
+    Route::get('/doctorDetail/{id}', [MoDoctorController::class, 'doctorDetail'])->name('doctorDetail');
+
+    //User Hospital
     Route::get('/hospital', [HospitalController::class, 'index']);
-    Route::post('/hospital_register', [HospitalController::class, 'store']);
-    Route::get('/hospital_edit', [HospitalController::class, 'edit']);
+
+    //MO Hospital
+    Route::get('/mo_hospital', [MoHospitalController::class, 'index'])->name('hospital');
+    Route::post('/hospital_register', [MoHospitalController::class, 'store']);
+    Route::get('/hospital_edit/{hospital}', [MoHospitalController::class, 'edit'])->name('hospital.edit');
+    Route::post('/hospital_update/{hospital}', [MoHospitalController::class, 'update'])->name('hospital.update');
+    Route::get('/hospital_delete/{hospital}', [MoHospitalController::class, 'delete'])->name('hospital.delete');
 
     //Booking
     Route::get('booking_req', [HospitalBookingController::class, 'index']);
     Route::post('booking_save', [HospitalBookingController::class, 'save']);
-    Route::get('ticket', [HospitalBookingController::class, 'ticket_view']);
+
     Route::get('reason', [HospitalBookingController::class, 'booking_reason_view']);
+    Route::post('patient_health_record_store', [PatientController::class, 'patient_health_record_store']);
+
+    //Ticket
+    Route::get('ticket_info', [TicketController::class, 'ticket_info']);
+    Route::get('ticket', [TicketController::class, 'index']);
+
+
+    //MO
+    Route::get('mo_home', [HomeController::class, 'mo_home']);
 });

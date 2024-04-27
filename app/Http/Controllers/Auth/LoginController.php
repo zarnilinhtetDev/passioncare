@@ -29,4 +29,9 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
+
+    public function forgetPassword()
+    {
+        return view('auth.forget_password');
+    }
 }

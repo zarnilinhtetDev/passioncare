@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>PassionCare</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -24,7 +26,10 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-
+    <!-- template skin -->
+    <link id="t-colors" href="color/default.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -32,6 +37,8 @@
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -44,10 +51,15 @@
         href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    {{-- bootstrap --}}
+    {{-- css --}}
+    <link rel="stylesheet" href="{{ asset('plugins/cubeportfolio/css/landingpage.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
+
 <style>
     /* The Modal (background) */
     .modal {
@@ -99,7 +111,6 @@
 
     #example-1_filter {
         text-align: left;
-
     }
 
     #example-1_info {
@@ -112,7 +123,6 @@
 
     body {
         font-size: 130%;
-
     }
 
     .btn {
@@ -123,86 +133,30 @@
 
 <body>
 
-
-
     @include('landing_page.nav')
-
 
     {{-- Tabs with table Section --}}
     <div id="exTab1" class="container mt-5">
 
         <div class="tab-content clearfix ">
             <div style="margin-top: 5%">
-                <h1>Hospital List</h1>
-                <button id="openModal" class="btn btn-primary mt-5">Hospital Reigster</button>
-            </div>
-            <div id="modal" class="modal">
-                <div class="modal-content  rounded-4">
-                    <div class="modal-header">
-                        <h2>Hospital Register</h2>
-                        <span id="closeModal" class="close">&times;</span>
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{ session('success') }}</strong>
                     </div>
-                    <form action="{{ url('hospital_register') }}" method="POST" class="mt-5">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="hospital_name">Hospital
-                                        Name</label>
+                @endif
 
-                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                                        placeholder="Enter Hospital Name" required>
+                @if (session('delete'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{ session('delete') }}</strong>
+                    </div>
+                @endif
+                <h1>Hospital List</h1>
 
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="hospital_phone_number">Phone
-                                        Number</label>
-
-                                    <input type="tel" class="form-control" id="hospital_phone_number"
-                                        name="hospital_phone_number" placeholder="Enter Phone Number" required>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="hospital_address">Address</label>
-
-                                    {{-- <input type="address" class="form-control" id="hospital_address"
-                                        name="hospital_address" placeholder="Enter Address"> --}}
-                                    <textarea name="hospital_address" id="hospital_address" class="form-control" cols="30" rows="5"></textarea>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="hospital_google_address_link" class="form-control"
-                                        id="hospital_google_address_link" name="hospital_google_address_link"
-                                        placeholder="Enter Google Address Link">
-                                    <button type="button" id="copyLinkBtn" class="btn btn-warning mt-2"> <i
-                                            class="fa-solid fa-paperclip"></i></button>
-
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="justify-content-end d-flex" style="height: 20%">
-
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-
-
-                    </form>
-
-                </div>
             </div>
+
             <div class="tab-pane active" style="margin-top: 6%">
 
                 <div class="table-responsive" style="overflow-y: auto;">
@@ -221,7 +175,6 @@
                                     Address
                                     Link</th>
 
-
                             </tr>
                         </thead>
                         <tbody>
@@ -234,14 +187,12 @@
                                     <td class="text-center">{{ $hospital->hospital_address }}</td>
                                     <td class="text-center">{{ $hospital->hospital_google_address_link }}</td>
 
-
                                 </tr>
                             @endforeach
 
                         </tbody>
                     </table>
                 </div>
-
 
             </div>
         </div>
@@ -279,47 +230,45 @@
 
         </div>
     </div>
-    @include('landing_page.footer_section')
 
-</body>
-
-</html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example-1').DataTable({
-            "lengthChange": false,
-            "pageLength": 10
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('#example-1').DataTable({
+                "lengthChange": false,
+                // "responsive": true,
+                "pageLength": 10,
+            });
         });
-    });
-</script>
-<script>
-    const openModalButton = document.getElementById('openModal');
-    const modal = document.getElementById('modal');
-    const closeModalButton = document.getElementById('closeModal');
+    </script>
+    <script>
+        const openModalButton = document.getElementById('openModal');
+        const modal = document.getElementById('modal');
+        const closeModalButton = document.getElementById('closeModal');
 
-    openModalButton.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+        openModalButton.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
 
-    closeModalButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
+        closeModalButton.addEventListener('click', () => {
             modal.style.display = 'none';
-        }
-    });
-</script>
+        });
 
-<script>
-    document.getElementById("copyLinkBtn").addEventListener("click", function() {
-        var copyText = document.getElementById("hospital_google_address_link");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-    });
-</script>
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById("copyLinkBtn").addEventListener("click", function() {
+            var copyText = document.getElementById("hospital_google_address_link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        });
+    </script>
+    @include('landing_page.footer_section')

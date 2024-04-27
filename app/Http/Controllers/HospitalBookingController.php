@@ -13,7 +13,7 @@ class HospitalBookingController extends Controller
     {
         $doctors = Doctor::latest()->get();
         $hospitals = Hospital::latest()->get();
-        return view('hospital_booking.index', compact('doctors', 'hospitals'));
+        return view('patient.hospital_booking.index', compact('doctors', 'hospitals'));
     }
     public function save(Request $request)
 
@@ -40,17 +40,12 @@ class HospitalBookingController extends Controller
         }
         if ($no >= 10000 && $no < 100000) {
             $ticket_no = 'ERS0' . $no;
-        } else {
-            $ticket_no = 'ERS' . $no;
         }
-        return view('hospital_booking.ticket', compact('ticket_no'));
+        return view('patient.hospital_booking.ticket', compact('ticket_no'));
     }
-    public function tickiet_view()
-    {
-        return view('hospital_booking.ticket');
-    }
+
     public function booking_reason_view()
     {
-        return view('hospital_booking.booking_reason');
+        return view('patient.hospital_booking.booking_reason');
     }
 }

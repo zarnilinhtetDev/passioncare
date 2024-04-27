@@ -94,6 +94,7 @@ li a:hover {
         position: fixed;
         bottom: 0;
         width: 100%;
+
         z-index: 1000;
     }
 
@@ -144,7 +145,7 @@ li a:hover {
     }
 
     .bottom-nav a i {
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 
@@ -192,16 +193,21 @@ li a:hover {
     .bottom-nav a {
         color: white;
         text-decoration: none;
-        padding: 10px;
+        padding: 8px;
     }
 
     .bottom-nav a i {
-        font-size: 24px;
+        font-size: 15px;
     }
 
     .scrollup {
         display: none !important;
     }
+
+    #forget_password {
+        font-size: 8px !important;
+    }
+
 }
 
 @media only screen and (max-width:425px) {
@@ -212,10 +218,18 @@ li a:hover {
     .textboxText {
         font-size: 10px !important;
     }
+
+    #forget_password {
+        font-size: 8px !important;
+    }
 }
 
 @media only screen and (max-width:320px) {
     .text-box {
         height: 120px !important;
+    }
+
+    #forget_password {
+        font-size: 8px !important;
     }
 }

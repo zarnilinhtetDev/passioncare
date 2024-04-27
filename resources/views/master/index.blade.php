@@ -14,18 +14,26 @@
         <section class="mt-5">
             <div class="container mt-5">
                 <div class="row d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 gap-lg-0">
+
+                    @if(!empty($patient))
                     <div class="wow-box">
-                        <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
-                            <i class="fa fa-check fa-3x text-white pb-3 pt-2"></i>
-                            <div class="font pb-2 text-white fs-3" style="font-weight: bold;">ဆရာဝန်နဲ့ တိုင်ပင်ဆွေးနွေးရန်</div>
-                        </div>
+                        <a href="{{url('reason')}}" style="text-decoration: none;">
+                            <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
+                                <i class="fa fa-check fa-3x text-white pb-3 pt-2"></i>
+                                <div class="font pb-2 text-white fs-3" style="font-weight: bold;">ဆရာဝန်နဲ့ တိုင်ပင်ဆွေးနွေးရန်</div>
+                            </div>
+                        </a>
                     </div>
+
                     <div class="wow-box">
-                        <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
-                            <i class="fa fa-list-alt fa-3x text-white pb-3 pt-2"></i>
-                            <div class="font pb-2 text-white fs-3" style="font-weight: bold">ဆေးရုံဆေးခန်း ဘိုကင်တင်ရန်</div>
-                        </div>
+                        <a href="{{url('booking_req')}}" style="text-decoration: none;">
+                            <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
+                                <i class="fa fa-list-alt fa-3x text-white pb-3 pt-2"></i>
+                                <div class="font pb-2 text-white fs-3" style="font-weight: bold">ဆေးရုံဆေးခန်း ဘိုကင်တင်ရန်</div>
+                            </div>
+                        </a>
                     </div>
+                    @endif
                 </div>
                 <div class="d-flex justify-content-center mt-5">
                     <div class="">
@@ -38,7 +46,8 @@
                                 ဆရာဝန်မှ ဖုန်းဖြင့်ပြန်လည်ဆက်သွယ်ပေးမည်ဖြစ်ပါ၍ ခေတ္တစောင့်ဆိုင်းပေးပါရန် အသိပေးအပ်ပါသည်။
                             </div>
 
-                        </div> @else
+                        </div>
+                        @else
                         <div class="card pop-box">
                             <div class="card-body textboxText text-center lh-lg">
                                 လတ်တလော အချက်အလက်များ မရှိသေးပါ။ သင့်တွင် ခံစားနေရသော ရောဂါလက္ခဏာများရှိလျှင် ဆရာဝန်နှင့်တိုင်ပင်ဆွေးနွေးရန်
@@ -83,7 +92,20 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tbody">
+                                        @foreach ($bookings as $booking)
                                         <tr>
+                                            <td scope="row">1</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary">ERS-00001</a>
+                                            </td>
+                                            <td>{{$booking->doctor_name}}</td>
+                                            <td>{{ $booking->hospital_name }}</td>
+                                            <td>{{ $booking->description }}</td>
+                                            <td>{{ $booking->date }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+                                        <!-- <tr>
                                             <td scope="row">1</td>
                                             <td>
                                                 <a href="#" class="btn btn-primary">ERS-00001</a>
@@ -93,7 +115,7 @@
                                             <td>ကျောက်ကပ်ဆေးခြင်း</td>
                                             <td>22-02-24</td>
                                             <td>22-01-24</td>
-                                        </tr>
+                                        </tr> -->
                                         <!-- Add more rows as needed -->
                                     </tbody>
                                 </table>

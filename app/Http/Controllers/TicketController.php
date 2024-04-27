@@ -6,4 +6,12 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+    public function index()
+    {
+        return view('patient.ticket.ticket');
+    }
+    public function tickiet_info()
+    {
+        return view('patient.ticket.ticket_info');
+    }
 }
