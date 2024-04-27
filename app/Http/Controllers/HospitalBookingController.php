@@ -6,17 +6,18 @@ use App\Models\Doctor;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use App\Models\HospitalBooking;
+use App\Models\MoDoctor;
+use App\Models\MoHospital;
 
 class HospitalBookingController extends Controller
 {
     public function index()
     {
-        $doctors = Doctor::latest()->get();
-        $hospitals = Hospital::latest()->get();
+        $doctors = MoDoctor::latest()->get();
+        $hospitals = MoHospital::latest()->get();
         return view('patient.hospital_booking.index', compact('doctors', 'hospitals'));
     }
     public function save(Request $request)
-
     {
         $hospital_booking = new HospitalBooking();
         $hospital_booking->patient_id = auth()->user()->id;
