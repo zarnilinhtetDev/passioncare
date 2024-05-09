@@ -4,10 +4,10 @@
 
 
     {{-- <div class="" > --}}
-    <div class=" col-5 col-lg-3">
-        <div class="d-flex justify-content-start align-items-center">
-            <img src="" alt="">
-            <h4 class="text-white pt-3">Easy Referral System </h4>
+    <div class=" col-5 d-flex col-lg-3">
+        <div class="d-flex justify-content-start align-items-center ms-5">
+            <img src="{{ asset('img/Logo.png') }}" alt="" width="50px" height="48px" style="border-radius: 20%;">
+            <h4 class="text-white ms-2">Easy Referral System </h4>
         </div>
     </div>
     <div class=" col-7 col-lg-6 offset-3">
@@ -17,10 +17,18 @@
                 <a class="nav-link text-white fs-4" aria-current="page" href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white fs-4" href="{{ url('/hospital') }}">Hospital</a>
+                @if (Auth::user()->type == 'mo')
+                    <a class="nav-link text-white fs-4" href="{{ url('/mo_hospital') }}">Hospital</a>
+                @else
+                    <a class="nav-link text-white fs-4" href="{{ url('/hospital') }}">Hospital</a>
+                @endif
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white fs-4" href="{{ url('/doctor') }}">Doctors</a>
+                @if (Auth::user()->type == 'mo')
+                    <a class="nav-link text-white fs-4" href="{{ url('/mo_doctor') }}">Doctor</a>
+                @else
+                    <a class="nav-link text-white fs-4" href="{{ url('/doctor') }}">Doctor</a>
+                @endif
             </li>
             <li class="nav-item" style="cursor: pointer !important">
                 <a class="nav-link text-white fs-4">Our Services</a>
@@ -32,7 +40,7 @@
                 <a class="nav-link text-white fs-4">About us</a>
             </li>
             <li class="nav-item" style="cursor: pointer !important">
-                <a class="nav-link text-white fs-4">Map</a>
+                <a href="#map" class="nav-link text-white fs-4">Map</a>
             </li>
             <li class="nav-item" style="cursor: pointer !important">
                 <a class="nav-link text-white fs-4">Help</a>
@@ -43,6 +51,7 @@
             <li class="nav-item">
                 <a class="mx-3 text-white" href=""><i class="fa fa-bell fa-1x"></i></a>
             </li>
+
             <li class="nav-item">
                 <div class="dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -50,7 +59,12 @@
                         <span class="text-white">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu Drop" style="background-color: #F0F5F9">
-                        <a href="{{ url('profile') }}" class="p-1 btn changelogout" style="width: 100px">Profile</a>
+                        @if (Auth::user()->type == 'mo')
+                            <a class="p-1 btn changelogout" href="{{ url('user') }}" style="width: 100px">User</a>
+                        @else
+                            <a href="{{ url('/profile') }}" class="p-1 btn changelogout"
+                                style="width: 100px">Profile</a>
+                        @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="p-1 btn changelogout" style="width: 100px">
@@ -61,5 +75,5 @@
             </li>
         </ul>
     </div>
-    {{-- </div> --}}
+    </div>
 </nav>

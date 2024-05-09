@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('other_certification')->nullable();
             $table->string('address')->nullable();
+            $table->string('from_fees')->nullable();
+            $table->string('to_fees')->nullable();
             $table->timestamps();
         });
     }

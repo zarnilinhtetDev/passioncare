@@ -1,11 +1,10 @@
 @include('landing_page.header_section')
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-    <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif; height:100vh;">
+    <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;">
         @include('landing_page.nav')
         <section class="container">
-
-
+            <div class="d-none d-lg-block d-xl-none" style="height:50px;"></div>
             <div class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
                 <div class="card" style="width: 70rem">
                     <div class="card-body m-5">
@@ -24,7 +23,7 @@
                                 <input type="file" class="form-control" name="file_name">
                             </div>
                             <div class="d-flex justify-content-center mt-4">
-                                <a href="{{url('/home')}}" class="btn btn-danger btn-lg me-4">မလုပ်တော့ပါ။</a>
+                                <a href="{{ url('/home') }}" class="btn btn-danger btn-lg me-4">မလုပ်တော့ပါ။</a>
                                 <button type="submit" class="btn btn-primary btn-lg ms-4">တင်သွင်းမည်။</button>
                             </div>
 
@@ -32,38 +31,39 @@
                     </div>
                 </div>
             </div>
-            <!-- <footer id="bottom-nav"> -->
-            <div class="bottom-nav" style="background-color: #337AB7" id="bottom-nav">
-                <a href="#">
-                    <i class="fas fa-home"></i>
-                    Home
-                </a>
-                <a href="#">
-                    <i class="fas fa-search"></i>
-                    Search
-                </a>
-                <a href="#">
-                    <i class="fas fa-plus"></i>
-                    Add
-                </a>
-                <a href="#">
-                    <i class="fas fa-heart"></i>
-                    Favorites
-                </a>
-                <a href="#">
-                    <i class="fas fa-user"></i>
-                    Profile
-                </a>
-
-                <a href="#" class="text-dark">
-                    {{-- <i class="fa fa-angle-up"> --}}
-                    <i class="fa fa-arrow-up"></i>
-                </a>
-
-            </div>
             <!-- </footer> -->
             {{-- Modal End --}}
         </section>
+
+        <!-- <footer id="bottom-nav"> -->
+        <div class="bottom-nav" style="background-color: #337AB7" id="bottom-nav">
+            <a href="#">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="#">
+                <i class="fas fa-search"></i>
+                Search
+            </a>
+            <a href="#">
+                <i class="fas fa-plus"></i>
+                Add
+            </a>
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
+
+            <a href="#" class="text-dark">
+                {{-- <i class="fa fa-angle-up"> --}}
+                <i class="fa fa-arrow-up"></i>
+            </a>
+
+        </div>
 
 
         @include('landing_page.footer_section')

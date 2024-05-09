@@ -94,7 +94,6 @@ li a:hover {
         position: fixed;
         bottom: 0;
         width: 100%;
-
         z-index: 1000;
     }
 
@@ -107,9 +106,13 @@ li a:hover {
     .bottom-nav a i {
         font-size: 24px;
     }
+
+    .pivacy-policy {
+        padding-bottom: 5px !important;
+    }
 }
 
-@media only screen and (max-width:820px) {
+@media only screen and (max-width:860px) {
     .navbar-expand-lg {
         display: none !important;
     }
@@ -147,15 +150,25 @@ li a:hover {
     .bottom-nav a i {
         font-size: 20px;
     }
+
 }
 
-@media only screen and (min-width:769px) {
+@media only screen and (min-width:768px) {
     #bottom-nav {
         display: none;
     }
+
+    .company-social .social-dribble {
+        margin-top: 10px !important;
+    }
 }
 
+
 @media only screen and (max-width:768px) {
+    #bottom-nav {
+        /* padding: 0 0 20px 0 !important; */
+    }
+
     .textboxText {
         font-size: 14px !important;
     }
@@ -231,5 +244,9 @@ li a:hover {
 
     #forget_password {
         font-size: 8px !important;
+    }
+
+    footer {
+        padding-bottom: 30px;
     }
 }

@@ -1,6 +1,6 @@
 @include('landing_page.header_section')
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom" class="doctorDetail" style="font-size: 16px">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom" class="doctorDetail" style="font-size: 16px;">
     <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;">
 
         <div class="content-wrapper">
@@ -15,14 +15,9 @@
                                     <h1 class="text-primary">Doctor Detail</h1>
                                 </div>
                                 <div class="col-6">
-                                    {{-- <ul class="breadcrumb float-sm-right d-flex justify-content-end">
-                                        <li class=""><a href="#" class="btn btn-lg btn-success">Edit</a>
-                                        </li>
-                                        <li class=""><a href="{{route('home')}}" class="btn btn-lg btn-primary">Back</a>
-                                        </li>
-                                    </ul> --}}
+
                                     <div class="d-flex justify-content-end">
-                                        <a href="#" class="btn btn-lg btn-success">Edit</a>
+                                        <a href="{{route('doctor#doctor_edit',$doctors->id)}}" class="btn btn-lg btn-success">Edit</a>
                                         <a href="{{ route('doctor') }}" class="btn btn-lg btn-primary ms-4">Back</a>
                                     </div>
                                 </div>
@@ -37,9 +32,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12 form-group d-flex justify-content-center">
-                                                <img src="{{ asset('img/photo/6.jpg') }}"
-                                                    class="rounded-circle mt-5 mb-4 doctorPro"
-                                                    style="width: 140px; height: 140px;">
+                                                <img src="{{ asset('img/photo/6.jpg') }}" class="rounded-circle mt-5 mb-4 doctorPro" style="width: 140px; height: 140px;">
                                             </div>
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Name</span>
@@ -50,8 +43,7 @@
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Phone Number</span>
                                                 <span class="col-2 fw-bold text-center">:</span>
-                                                <span
-                                                    class="col-5 fw-bold text-start">{{ $doctors->phone_number }}</span>
+                                                <span class="col-5 fw-bold text-start">{{ $doctors->phone_number }}</span>
                                             </div>
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">City</span>
@@ -71,8 +63,7 @@
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Medical License</span>
                                                 <span class="col-2 fw-bold text-center">:</span>
-                                                <span
-                                                    class="col-5 fw-bold text-start">{{ $doctors->medical_license }}</span>
+                                                <span class="col-5 fw-bold text-start">{{ $doctors->medical_license }}</span>
                                             </div>
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Degree</span>
@@ -82,19 +73,17 @@
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Specialization</span>
                                                 <span class="col-2 fw-bold text-center">:</span>
-                                                <span
-                                                    class="col-5 fw-bold text-start">{{ $doctors->doctor_specialities }}</span>
+                                                <span class="col-5 fw-bold text-start">{{ $doctors->doctor_specialities }}</span>
                                             </div>
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Other Certification</span>
                                                 <span class="col-2 fw-bold text-center">:</span>
-                                                <span
-                                                    class="col-5 fw-bold text-start">{{ $doctors->other_certification }}</span>
+                                                <span class="col-5 fw-bold text-start">{{ $doctors->other_certification }}</span>
                                             </div>
                                             <div class="col-md-12 form-group row" class="dt_span">
                                                 <span class="col-5 fw-bold text-end">Work Experience</span>
                                                 <span class="col-2 fw-bold text-center">:</span>
-                                                <span class="col-5 fw-bold text-start"></span>
+                                                <span class="col-5 fw-bold text-start">{{$doctors->work_experiance}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -144,12 +133,12 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($doctor2 as $doctor)
-                                                    <tr>
-                                                        <td>{{ $doctor->no }}</td>
-                                                        <td>{{ $doctor->hospitalname }}</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>{{ $doctor->no }}</td>
+                                                    <td>{{ $doctor->hospitalname }}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -160,7 +149,6 @@
                         </div>
                     </section>
                 </div>
-
 
             </section>
 

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Hospital;
-use Illuminate\Http\Request;
-use App\Models\HospitalBooking;
 use App\Models\MoDoctor;
 use App\Models\MoHospital;
+use Illuminate\Http\Request;
+use App\Models\HospitalBooking;
+use App\Models\PatientInsurance;
+use App\Models\PatientEmergencyInfo;
 
 class HospitalBookingController extends Controller
 {
@@ -15,7 +18,12 @@ class HospitalBookingController extends Controller
     {
         $doctors = MoDoctor::latest()->get();
         $hospitals = MoHospital::latest()->get();
+        // $patient = Patient::where('user_id', auth()->user()->id)->first();
+        // $bookings = HospitalBooking::where('patient_id', auth()->user()->id)->get();
+        // if ($patient)
         return view('patient.hospital_booking.index', compact('doctors', 'hospitals'));
+        // else
+        // return view('master.index',compact('patient','bookings'))->with('warning2', 'User information is not complete!');
     }
     public function save(Request $request)
     {
@@ -47,6 +55,11 @@ class HospitalBookingController extends Controller
 
     public function booking_reason_view()
     {
+        // $patient = Patient::where('user_id', auth()->user()->id)->first();
+        // $bookings = HospitalBooking::where('patient_id', auth()->user()->id)->get();
+        // if ($patient)
         return view('patient.hospital_booking.booking_reason');
+        // else
+        // return view('master.index',compact('patient','bookings'))->with('warning', 'User information is not complete!');
     }
 }

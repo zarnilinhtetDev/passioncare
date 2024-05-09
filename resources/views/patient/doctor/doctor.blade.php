@@ -9,8 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <!-- css -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
@@ -26,9 +25,7 @@
 
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -40,8 +37,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!-- DataTables Buttons CSS -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     {{-- bootstrap --}}
@@ -138,7 +134,7 @@
 
                 <div class="card shadow rounded-3" style="margin-top: 2%">
                     <div class="card-body ">
-                        <form action="{{ url('doctor_search') }}" method="POST">
+                        <form action="{{ url('doctor') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -147,19 +143,16 @@
                                         <label for="doctor_name" class="col-sm-3 col-form-label">Doctor
                                             Name</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="doctor_name"
-                                                name="doctor_name" placeholder="Search Doctor Name">
+                                            <input type="text" class="form-control" id="doctor_name" name="doctor_name" placeholder="Search Doctor Name">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label for="doctor_specialities"
-                                            class="col-sm-3 col-form-label">Specialities:</label>
+                                        <label for="doctor_specialities" class="col-sm-3 col-form-label">Specialities:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="doctor_specialities"
-                                                name="doctor_specialities" placeholder="Search Specialities">
+                                            <input type="text" class="form-control" id="doctor_specialities" name="doctor_specialities" placeholder="Search Specialities">
                                         </div>
                                     </div>
                                 </div>
@@ -169,8 +162,7 @@
                                         <label for="hospital_name" class="col-sm-3 col-form-label">Hospital
                                             Name</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="hospital_name"
-                                                name="hospitalname" placeholder="Search Hospital Name">
+                                            <input type="text" class="form-control" id="hospital_name" name="hospitalname" placeholder="Search Hospital Name">
                                         </div>
                                     </div>
                                 </div>
@@ -180,8 +172,7 @@
 
                                         <label for="city" class="col-sm-3 col-form-label">City/Township</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="city" name="city"
-                                                placeholder="Search City/Township">
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="Search City/Township">
                                         </div>
                                     </div>
                                 </div>
@@ -193,16 +184,13 @@
                                         <label for="inputPassword" class="col-sm-3 col-form-label">Charges
                                             Fees:</label>
 
-                                        <label for="doctor_charges_fees_from"
-                                            class="col-sm-1 col-form-label">From</label>
+                                        <label for="doctor_charges_fees_from" class="col-sm-1 col-form-label">From</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="doctor_charges_fees_from"
-                                                name="doctor_charges_fees_from">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_from" name="doctor_charges_fees_from">
                                         </div>
                                         <label for="doctor_charges_fees_to" class="col-sm-1 col-form-label">To</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="doctor_charges_fees_to"
-                                                name="doctor_charges_fees_to">
+                                            <input type="text" class="form-control" id="doctor_charges_fees_to" name="doctor_charges_fees_to">
                                         </div>
                                     </div>
                                 </div>
@@ -237,23 +225,26 @@
                         </thead>
                         <tbody>
                             @foreach ($doctors as $key => $doctor)
-                                <tr>
-                                    <th class="text-center" scope="row">{{ $key + 1 }}</th>
-                                    <td class="text-center">{{ $doctor->doctor_name }}</td>
-                                    <td class="text-center">{{ $doctor->doctor_specialities }}</td>
-                                    <td class="text-center">{{ $doctor->phone_number }}</td>
-                                    <td class="text-center">
-                                        @foreach ($doctor->modoctor2s as $doc)
-                                            {{ $doc->hospitalname }} <br>
-                                        @endforeach
-                                    </td>
-                                    <td class="text-center">{{ $doctor->address }}</td>
-                                    <td class="text-center">{{ $doctor->city }}</td>
+                            <tr>
+                                <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                <td class="text-center">{{ $doctor->doctor_name }}</td>
+                                <td class="text-center">{{ $doctor->doctor_specialities }}</td>
+                                <td class="text-center">{{ $doctor->phone_number }}</td>
+                                <td class="text-center">
+                                    @foreach ($doctor->modoctor2s as $doc)
+                                    {{ $doc->hospitalname }} <br>
+                                    @endforeach
+                                </td>
+                                <td class="text-center">{{ $doctor->address }}</td>
+                                <td class="text-center">{{ $doctor->city }}</td>
 
-                                </tr>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mb-5">
+
+                    </div>
                 </div>
 
 

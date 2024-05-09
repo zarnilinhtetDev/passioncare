@@ -1,7 +1,12 @@
+<style>
+    @media (max-width: 376px) {
+        .forget {
+            font-size: 12px;
+            margin: 10px 0 10px 0 !important;
+        }
+    }
+</style>
 @extends('layouts.app')
-
-
-
 @section('content')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -59,12 +64,12 @@
                         style="font-weight: bold; background-color:#2297BE;">Login</button>
 
                     <div class="form-group" style="display: flex; align-items: center; justify-content:space-between;">
-                        <div class="" style="display: flex; align-items: center;">
+                        <div class="forget" style="display: flex; align-items: center;">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                 {{ old('remember') ? 'checked' : '' }}>&nbsp;
                             <span id="remember_password">Remember Password</span>
                         </div>
-                        <div class="" style="text-align:right;">
+                        <div class="forget" style="text-align:right;">
                             <a href="{{ url('forget_password') }}" class="text-danger " id="forget_password">Forget
                                 Password?</a>
                         </div>
@@ -158,8 +163,8 @@
                         style="border-radius: 100%;">&nbsp;&nbsp;&nbsp;Continue with google</a>
                 <div class="form-group" style="display: flex; align-items: center;">
                     <input type="checkbox" class="" name="terms" placeholder="">&nbsp;&nbsp;
-                    <span for="terms">I agree to the <span class="text-primary">Terms of Use</span> and the <span
-                            class="text-primary">Privacy Policy</span>
+                    <span class="forget" for="terms">I agree to the <span class="text-primary forget">Terms of
+                            Use</span> and the <span class="text-primary forget">Privacy Policy</span>
                         for my account.</span>
                 </div>
             </div>

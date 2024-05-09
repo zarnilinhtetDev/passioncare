@@ -10,9 +10,35 @@ use Illuminate\Http\Request;
 
 class MoDoctorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $doctors = MoDoctor::latest()->get();
+        $query = MoDoctor::query();
+        if ($request->filled('doctor_name')) {
+            $query->where('doctor_name', 'like', '%' . $request->doctor_name . '%');
+        }
+
+        if ($request->filled('doctor_specialities')) {
+            $query->where('doctor_specialities', 'like', '%' . $request->doctor_specialities . '%');
+        }
+
+        if ($request->filled('hospitalname')) {
+            $query->whereHas('modoctor2s', function ($q) use ($request) {
+                $q->where('hospitalname', 'like', '%' . $request->hospitalname . '%');
+            });
+        }
+
+        if ($request->filled('city')) {
+            $query->where('city', 'like', '%' . $request->city . '%');
+        }
+
+        if ($request->filled('doctor_charges_fees_from')) {
+            $query->where('from_fees', 'like', $request->doctor_charges_fees_from);
+        }
+
+        if ($request->filled('doctor_charges_fees_to')) {
+            $query->where('to_fees', 'like', $request->doctor_charges_fees_to);
+        }
+        $doctors = $query->latest()->get();
         $doctor2 = MoDoctor2::latest()->get();
         return view('mo.doctor.mo_doctor', compact('doctors', 'doctor2'));
     }
@@ -31,6 +57,8 @@ class MoDoctorController extends Controller
         $doctor->city = $request->city;
         $doctor->other_certification = $request->other_certification;
         $doctor->address = $request->address;
+        $doctor->from_fees = $request->doctor_charges_fees_from;
+        $doctor->to_fees = $request->doctor_charges_fees_to;
         $doctor->save();
         $doctorid = $doctor->id;
 
@@ -46,34 +74,42 @@ class MoDoctorController extends Controller
         return redirect()->back()->with('success', 'Doctor Register Is Successfully');
     }
 
-    public function search(Request $request)
-    {
-        $query = MoDoctor::query();
-        // $something = MoDoctor2::query();
 
-        if ($request->filled('doctor_name')) {
-            $query->where('doctor_name', 'like', '%' . $request->doctor_name . '%');
-        }
+    // public function search(Request $request)
+    // {
+    //     $query = MoDoctor::query();
 
-        if ($request->filled('doctor_specialities')) {
-            $query->where('doctor_specialities', 'like', '%' . $request->doctor_specialities . '%');
-        }
+    //     if ($request->filled('doctor_name')) {
+    //         $query->where('doctor_name', 'like', '%' . $request->doctor_name . '%');
+    //     }
 
-        if ($request->filled('hospitalname')) {
-            $query->whereHas('modoctor2s', function ($q) use ($request) {
-                $q->where('hospitalname', 'like', '%' . $request->hospitalname . '%');
-            });
-        }
+    //     if ($request->filled('doctor_specialities')) {
+    //         $query->where('doctor_specialities', 'like', '%' . $request->doctor_specialities . '%');
+    //     }
+
+    //     if ($request->filled('hospitalname')) {
+    //         $query->whereHas('modoctor2s', function ($q) use ($request) {
+    //             $q->where('hospitalname', 'like', '%' . $request->hospitalname . '%');
+    //         });
+    //     }
 
 
-        if ($request->filled('city')) {
-            $query->where('city', 'like', '%' . $request->city . '%');
-        }
+    //     if ($request->filled('city')) {
+    //         $query->where('city', 'like', '%' . $request->city . '%');
+    //     }
 
-        $doctors = $query->latest()->get();
+    //     if ($request->filled('doctor_charges_fees_from')) {
+    //         $query->where('from_fees', 'like', '%' . $request->doctor_charges_fees_from . '%');
+    //     }
 
-        return view('mo.doctor.mo_doctor', compact('doctors'));
-    }
+    //     if ($request->filled('doctor_charges_fees_to')) {
+    //         $query->where('to_fees', 'like', '%' . $request->doctor_charges_fees_to . '%');
+    //     }
+
+    //     $doctors = $query->latest()->get();
+
+    //     return view('mo.doctor.mo_doctor', compact('doctors'));
+    // }
 
     public function doctorDetail($id)
     {
@@ -104,6 +140,8 @@ class MoDoctorController extends Controller
         $doctor->city = $request->city;
         $doctor->other_certification = $request->other_certification;
         $doctor->address = $request->address;
+        $doctor->from_fees = $request->doctor_charges_fees_from;
+        $doctor->to_fees = $request->doctor_charges_fees_to;
         $doctor->save();
         $doctorid = $doctor->id;
 
@@ -130,7 +168,7 @@ class MoDoctorController extends Controller
         return redirect()->route('doctor')->with('success', 'Doctor Update Is Successfully');
     }
     // delete customer
-    public function deleteDocter($id)
+    public function deleteDoctor($id)
     {
         MoDoctor::where('id', $id)->delete();
         MoDoctor2::where('mo_doctor_id', $id)->delete();

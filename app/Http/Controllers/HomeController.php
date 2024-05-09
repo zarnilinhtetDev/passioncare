@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Models\PatientAddress;
 
 class HomeController extends Controller
 {
@@ -28,6 +30,8 @@ class HomeController extends Controller
 
     public function mo_home()
     {
-        return view('mo.home.index');
+        $patients = Patient::latest()->get();
+        $patientAddresses = PatientAddress::latest()->get();
+        return view('mo.home.index', compact('patients', 'patientAddresses'));
     }
 }

@@ -10,7 +10,7 @@ class TicketController extends Controller
     {
         return view('patient.ticket.ticket');
     }
-    public function tickiet_info()
+    public function ticket_info()
     {
         return view('patient.ticket.ticket_info');
     }

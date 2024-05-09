@@ -30,7 +30,7 @@ class MoHospitalController extends Controller
     public function update(Request $request, MoHospital $hospital)
     {
         $hospital->update($request->all());
-        return redirect('hospital')->with('success', 'Hospital Updating Is Successful!');
+        return redirect()->route('hospital')->with('success', 'Hospital Updating Is Successful!');
     }
 
     public function delete(MoHospital $hospital)

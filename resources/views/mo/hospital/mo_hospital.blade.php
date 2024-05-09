@@ -11,8 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <!-- css -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
@@ -28,12 +27,9 @@
 
     <!-- template skin -->
     <link id="t-colors" href="color/default.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -47,16 +43,14 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!-- DataTables Buttons CSS -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('plugins/cubeportfolio/css/landingpage.css') }}">
 
     {{-- bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 
@@ -140,53 +134,50 @@
 
         <div class="tab-content clearfix ">
             <div style="margin-top: 5%">
+                <div class="d-none d-md-block d-xl-none" style="height:60px;"></div>
                 @if (session('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>{{ session('success') }}</strong>
-                    </div>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
                 @endif
 
                 @if (session('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>{{ session('delete') }}</strong>
-                    </div>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('delete') }}</strong>
+                </div>
                 @endif
-                <h1>Hospital List</h1>
+                <h1 class="mt-md-3 mt-lg-0">Hospital List</h1>
                 <button id="openModal" class="btn btn-primary mt-5">Hospital Register</button>
             </div>
-            <div id="modal" class="modal">
-                <div class="modal-content  rounded-4">
+            <div id="modal" class="modal mt-lg-4 mt-xl-0">
+                <div class="modal-content  rounded-4 ">
                     <div class="modal-header">
                         <h2>Hospital Registration</h2>
                         <!-- <span id="closeModal" class="close">&times;</span> -->
                     </div>
-                    <form action="{{ url('hospital_register') }}" method="POST" class="mt-5">
+                    <form action="{{ url('hospital_register') }}" method="POST" class="mt-5 mb-2 mb-sm-0">
                         @csrf
                         <div class="row">
                             <h4 style="text-decoration:underline;">Hospital Information</h4>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="hospital_name"> Name </label>
-                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name"
-                                        placeholder="Enter Hospital Name" required>
+                                    <input type="text" class="form-control" id="hospital_name" name="hospital_name" placeholder="Enter Hospital Name" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="hospital_type">Type</label>
-                                    <input type="text" class="form-control" id="hospital_type"
-                                        name="hospital_type" placeholder="Enter Hospital Type" required>
+                                    <input type="text" class="form-control" id="hospital_type" name="hospital_type" placeholder="Enter Hospital Type" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="hospital_br_number">Bussiness Registration Number(If
                                         applicable)</label>
-                                    <input type="text" class="form-control" id="hospital_br_number"
-                                        name="hospital_br_number"
-                                        placeholder="Enter Hospital Bussiness Registration number" required>
+                                    <input type="text" class="form-control" id="hospital_br_number" name="hospital_br_number" placeholder="Enter Hospital Bussiness Registration number" required>
                                 </div>
                             </div>
                         </div>
@@ -202,16 +193,13 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="hospital_phone_number">Phone Number</label>
-                                    <input type="tel" class="form-control" id="hospital_phone_number"
-                                        name="hospital_phone_number" placeholder="Enter Hospital phone number"
-                                        required>
+                                    <input type="tel" class="form-control" id="hospital_phone_number" name="hospital_phone_number" placeholder="Enter Hospital phone number" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="hospital_email">Email Address</label>
-                                    <input type="text" class="form-control" id="hospital_email"
-                                        name="hospital_email" placeholder="Enter Hospital Email Address" required>
+                                    <input type="text" class="form-control" id="hospital_email" name="hospital_email" placeholder="Enter Hospital Email Address" required>
                                 </div>
                             </div>
                         </div>
@@ -220,11 +208,8 @@
                             <div class="form-group col-12 col-md-8">
                                 <label for="hospital_google_address_link">GPS Location Address</label>
                                 <div class="input-group">
-                                    <input type="hospital_google_address_link" class="form-control"
-                                        id="hospital_google_address_link" name="hospital_google_address_link"
-                                        placeholder="Enter Google Address Link">
-                                    <button type="button" id="copyLinkBtn" class="btn btn-warning"> <i
-                                            class="fa-solid fa-paperclip"></i></button>
+                                    <input type="hospital_google_address_link" class="form-control" id="hospital_google_address_link" name="hospital_google_address_link" placeholder="Enter Google Address Link">
+                                    <button type="button" id="copyLinkBtn" class="btn btn-primary"> <i class="fa-solid fa-paperclip"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -235,23 +220,19 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="bed_capacity">Bed Capacity</label>
-                                    <input type="number" class="form-control" id="bed_capacity" name="bed_capacity"
-                                        placeholder="Enter bed capacity" required>
+                                    <input type="number" class="form-control" id="bed_capacity" name="bed_capacity" placeholder="Enter bed capacity" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="facility_and_services">Facility & Services</label>
-                                    <input type="text" class="form-control" id="facility_and_services"
-                                        name="facility_and_services" placeholder="Enter facility and services"
-                                        required>
+                                    <input type="text" class="form-control" id="facility_and_services" name="facility_and_services" placeholder="Enter facility and services" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="specialities">Specialities</label>
-                                    <input type="text" class="form-control" id="specialities" name="specialities"
-                                        placeholder="Enter Hospital specialities" required>
+                                    <input type="text" class="form-control" id="specialities" name="specialities" placeholder="Enter Hospital specialities" required>
                                 </div>
                             </div>
                         </div>
@@ -262,22 +243,19 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="number_of_physicians">Number of Physicians </label>
-                                    <input type="number" class="form-control" id="number_of_physicians"
-                                        name="number_of_physicians" placeholder="Enter number of physicians" required>
+                                    <input type="number" class="form-control" id="number_of_physicians" name="number_of_physicians" placeholder="Enter number of physicians" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="number_of_nurses">Number of Nurses</label>
-                                    <input type="number" class="form-control" id="number_of_nurses"
-                                        name="number_of_nurses" placeholder="Enter number of nurses" required>
+                                    <input type="number" class="form-control" id="number_of_nurses" name="number_of_nurses" placeholder="Enter number of nurses" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="other_staff">Other Staff </label>
-                                    <input type="text" class="form-control" id="other_staff" name="other_staff"
-                                        placeholder="Enter other staff" required>
+                                    <input type="text" class="form-control" id="other_staff" name="other_staff" placeholder="Enter other staff" required>
                                 </div>
                             </div>
                         </div>
@@ -288,22 +266,20 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="emergency_contact">Emergency Contact</label>
-                                    <input type="tel" class="form-control" id="emergency_contact"
-                                        name="emergency_contact" placeholder="Enter emergency contact" required>
+                                    <input type="tel" class="form-control" id="emergency_contact" name="emergency_contact" placeholder="Enter emergency contact" required>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="emergency_services">Emergency Services</label>
-                                    <input type="text" class="form-control" id="emergency_services"
-                                        name="emergency_services" placeholder="Enter emergency services" required>
+                                    <input type="text" class="form-control" id="emergency_services" name="emergency_services" placeholder="Enter emergency services" required>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 mb-5 mb-md-0 d-flex align-items-center gap-3">
-                                <div class="col-6 d-flex justify-content-center">
+                            <div class="d-flex justify-content-end mb-4 mb-sm-0">
+                                <div class="">
                                     <buttton id="closeModal" class="btn btn-primary px-md-5 py-md-3">Back</buttton>
                                 </div>
-                                <div class="col-6 d-flex justify-content-center">
+                                <div class="ms-5">
                                     <button type="submit" class="btn btn-primary px-md-5 py-md-3">Save</button>
                                 </div>
                             </div>
@@ -335,25 +311,22 @@
                         </thead>
                         <tbody>
                             @foreach ($hospitals as $key => $hospital)
-                                <tr>
-                                    <th class="text-center" scope="row">{{ $key + 1 }}</th>
-                                    <td class="text-center">{{ $hospital->hospital_name }}</td>
-                                    <td class="text-center">{{ $hospital->hospital_phone_number }}</td>
+                            <tr>
+                                <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                <td class="text-center">{{ $hospital->hospital_name }}</td>
+                                <td class="text-center">{{ $hospital->hospital_phone_number }}</td>
 
-                                    <td class="text-center">{{ $hospital->hospital_address }}</td>
-                                    <td class="text-center">{{ $hospital->hospital_google_address_link }}</td>
-                                    <td>
-                                        <a href="{{ route('hospital.edit', $hospital->id) }}"
-                                            class="btn btn-success mb-2">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
+                                <td class="text-center">{{ $hospital->hospital_address }}</td>
+                                <td class="text-center">{{ $hospital->hospital_google_address_link }}</td>
+                                <td>
+                                    <a href="{{ route('hospital.edit', $hospital->id) }}" class="btn btn-success mb-2">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
 
-                                        <a href="{{ route('hospital.delete', $hospital->id) }}"
-                                            class="btn btn-danger mb-2"
-                                            onclick="return confirm('Are you sure want to delete this Hospital?')">
-                                            <i class="fa-solid fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                    <a href="{{ route('hospital.delete', $hospital->id) }}" class="btn btn-danger mb-2" onclick="return confirm('Are you sure want to delete this Hospital?')">
+                                        <i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
                             @endforeach
 
                         </tbody>

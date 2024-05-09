@@ -4,8 +4,9 @@
     <div id="wrapper" style=" font-family: Arial, Helvetica, sans-serif;">
         @include('landing_page.nav')
         <section class="container-fluid">
+            <div class="d-none d-lg-block d-xl-none" style="height:50px;"></div>
             <div class="d-flex align-items-center justify-content-center" style="min-height: 40vh;">
-                <div class="col-6 col-lg-4 p-0">
+                <div class="col-8 col-lg-4 p-0">
                     <div class="card shadow">
                         <div class="mt-5">
                             <h4 class="card-title text-center">ကျေးဇူးတင်ပါသည်</h4>

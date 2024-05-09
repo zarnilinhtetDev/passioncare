@@ -18,52 +18,79 @@ class PatientController extends Controller
     public function index()
     {
         $patient = Patient::where('user_id', auth()->user()->id)->first();
-        $emergency = PatientEmergencyInfo::where('patient_id', auth()->user()->id)->first();
-        $insurance = PatientInsurance::where('patient_id', auth()->user()->id)->first();
-        $initial = PatientInitialTest::where('patient_id', auth()->user()->id)->first();
-        $p_address = PatientAddress::where('patient_id', auth()->user()->id)->first();
-        return view('patient.patient_data.index', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        if ($patient) {
+            $emergency = PatientEmergencyInfo::where('patient_id', $patient->id)->first();
+            $insurance = PatientInsurance::where('patient_id', $patient->id)->first();
+            $initial = PatientInitialTest::where('patient_id', $patient->id)->first();
+            $p_address = PatientAddress::where('patient_id', $patient->id)->first();
+            return view('patient.patient_data.index', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        }
+        return view('patient.patient_data.index', compact('patient'));
     }
     //Profile Edit
     public function profile_edit()
     {
         $patient = Patient::where('user_id', auth()->user()->id)->first();
-        $emergency = PatientEmergencyInfo::where('patient_id', auth()->user()->id)->first();
-        $insurance = PatientInsurance::where('patient_id', auth()->user()->id)->first();
-        $initial = PatientInitialTest::where('patient_id', auth()->user()->id)->first();
-        $p_address = PatientAddress::where('patient_id', auth()->user()->id)->first();
-        $user = auth()->user();
-        return view('patient.patient_data.profile_edit', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        if ($patient) {
+            $emergency = PatientEmergencyInfo::where('patient_id', $patient->id)->first();
+            $insurance = PatientInsurance::where('patient_id', $patient->id)->first();
+            $initial = PatientInitialTest::where('patient_id', $patient->id)->first();
+            $p_address = PatientAddress::where('patient_id', $patient->id)->first();
+            $user = auth()->user();
+            return view('patient.patient_data.profile_edit', compact('patient', 'emergency', 'insurance', 'initial', 'p_address'));
+        }
+        return view('patient.patient_data.profile_edit', compact('patient'));
     }
     //Profile Update
     public function profile_update(Request $request, $id)
     {
+        // dd($id);
+        // try {
+        $patient = Patient::where('user_id', auth()->user()->id)->first();
+        // dd($patient);
+        if ($patient) {
+            // dd("hit");
+            //update Data into patient
+            $patient->name = $request->name;
+            $patient->phno = $request->phno;
+            $patient->nrc = $request->nrc;
+            $patient->dob = $request->dob;
+            $patient->gender = $request->gender;
+            $patient->save();
 
+            $initial = PatientInitialTest::where('patient_id', $patient->id)->first();
+            //Update Data into PatientInitialtest
+            $initial->height = $request->height;
+            $initial->blood_type = $request->blood_type;
+            $initial->save();
+            // $initial->delete();
 
-        try {
-            $patient = Patient::where('user_id', auth()->user()->id)->first();
-            if ($patient) {
-                $patient->delete();
-            }
-            $initial = PatientInitialTest::where('patient_id', $id)->first();
-            if ($initial) {
-                $initial->delete();
-            }
-            $insurance = PatientInsurance::where('patient_id', $id)->first();
-            if ($insurance) {
-                $insurance->delete();
-            }
-            $emergency = PatientEmergencyInfo::where('patient_id', $id)->first();
-            if ($emergency) {
-                $emergency->delete();
-            }
-            $p_address = PatientAddress::where('patient_id', $id)->first();
-            if ($p_address) {
-                $p_address->delete();
-            }
-            $user = User::find($id);
-            $user->name = $request->name;
-            $user->update();
+            $insurance = PatientInsurance::where('patient_id', $patient->id)->first();
+            $insurance->company_name = $request->company_name;
+            $insurance->company_contact_number = $request->company_contact_number;
+            $insurance->company_address = $request->company_address;
+            $insurance->medical_plan = $request->medical_plan;
+            $insurance->save();
+            // $insurance->delete();
+
+            $emergency = PatientEmergencyInfo::where('patient_id', $patient->id)->first();
+            //update Data into patient_emergency_info
+            $emergency->contact_name = $request->contact_name;
+            $emergency->contact_number = $request->contact_number;
+            $emergency->contact_address = $request->contact_address;
+            $emergency->save();
+            // $emergency->delete();
+
+            $patientAddress = PatientAddress::where('patient_id', $patient->id)->first();
+            //Update Data into PatientAddress
+            $patientAddress->address = $request->address;
+            $patientAddress->city = $request->city;
+            $patientAddress->save();
+            // $patientAddress->delete();
+
+            // $patient->delete();
+        } else {
+            // dd("hit");
             //Insert Data into patient
             $patient = new Patient();
             $patient->user_id = $id;
@@ -75,9 +102,11 @@ class PatientController extends Controller
 
             $patient->save();
 
+            $patientId = Patient::latest()->get()->first()->id;
+
             //Insert Data into patient_emergency_info
             $emergency = new PatientEmergencyInfo();
-            $emergency->patient_id = $id;
+            $emergency->patient_id = $patientId;
             $emergency->contact_name = $request->contact_name;
             $emergency->contact_number = $request->contact_number;
             $emergency->contact_address = $request->contact_address;
@@ -85,7 +114,7 @@ class PatientController extends Controller
 
             //Insert Data into patient_insurance
             $insurance = new PatientInsurance();
-            $insurance->patient_id = $id;
+            $insurance->patient_id = $patientId;
             $insurance->company_name = $request->company_name;
             $insurance->company_contact_number = $request->company_contact_number;
             $insurance->company_address = $request->company_address;
@@ -93,29 +122,47 @@ class PatientController extends Controller
             $insurance->save();
 
             //Insert Data into PatientInitialtest
-
             $initial = new PatientInitialTest();
-            $initial->patient_id = $id;
+            $initial->patient_id = $patientId;
             $initial->height = $request->height;
             $initial->blood_type = $request->blood_type;
             $initial->save();
 
             //Insert Data into PatientAddress
-            $p_address = new PatientAddress();
-            $p_address->patient_id = $id;
-            $p_address->address = $request->address;
-            $p_address->city = $request->city;
-            // $p_address->state=$request->state;
-            $p_address->save();
-
-
-
-            return redirect('profile')->with('success', 'Profile Updated Successfully');
-        } catch (\Exception $e) {
-            // Handle the exception
-            // For example, you can log the error or return a response indicating failure
-            return response()->json(['error' => 'Failed to insert data.' . $e], 500);
+            $patientAddress = new PatientAddress();
+            $patientAddress->patient_id = $patientId;
+            $patientAddress->address = $request->address;
+            $patientAddress->city = $request->city;
+            // $patientAddress->state=$request->state;
+            $patientAddress->save();
         }
+        // $initial = PatientInitialTest::where('patient_id', $patient->id)->first();
+        // if ($initial) {
+        //     $initial->delete();
+        // }
+        // $insurance = PatientInsurance::where('patient_id', $patient->id)->first();
+        // if ($insurance) {
+        //     $insurance->delete();
+        // }
+        // $emergency = PatientEmergencyInfo::where('patient_id', $patient->id)->first();
+        // if ($emergency) {
+        //     $emergency->delete();
+        // }
+        // $patientAddress = PatientAddress::where('patient_id', $patient->id)->first();
+        // if ($patientAddress) {
+        //     $patientAddress->delete();
+        // }
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->update();
+
+        return redirect('profile')->with('success', 'Profile Updated Successfully');
+        // } catch (\Exception $e) {
+        // Handle the exception
+        // For example, you can log the error or return a response indicating failure
+        // return response()->json(['error' => 'Failed to insert data.' . $e], 500);
+        // }
     }
 
     public function patient_health_record_store(Request $request)
@@ -151,5 +198,143 @@ class PatientController extends Controller
             $ticket_no = 'ERS0' . $no + 1;
         }
         return view('patient.ticket.ticket', compact('ticket_no'));
+    }
+
+    /*************************/
+    //MO patient
+    public function moPatient()
+    {
+        // $patients = Patient::latest()->get();
+        return view('mo.patient.patient');
+    }
+
+    public function store(Request $request, $id)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = str_replace(' ', '', strtolower($request->name)) . "@gmail.com";
+        $user->save();
+        $users = User::all();
+
+        //Insert Data into patient
+        $patient = new Patient();
+        $patient->user_id = count($users);
+        $patient->name = $request->name;
+        $patient->phno = $request->phno;
+        $patient->nrc = $request->nrc;
+        $patient->dob = $request->dob;
+        $patient->gender = $request->gender;
+
+        $patient->save();
+
+        $patientId = Patient::latest()->get()->first()->id;
+
+        //Insert Data into patient_emergency_info
+        $emergency = new PatientEmergencyInfo();
+        $emergency->patient_id = $patientId;
+        $emergency->contact_name = $request->contact_name;
+        $emergency->contact_number = $request->contact_number;
+        $emergency->contact_address = $request->contact_address;
+        $emergency->save();
+
+        //Insert Data into patient_insurance
+        $insurance = new PatientInsurance();
+        $insurance->patient_id = $patientId;
+        $insurance->company_name = $request->company_name;
+        $insurance->company_contact_number = $request->company_contact_number;
+        $insurance->company_address = $request->company_address;
+        $insurance->medical_plan = $request->medical_plan;
+        $insurance->save();
+
+        //Insert Data into PatientInitialtest
+
+        $initial = new PatientInitialTest();
+        $initial->patient_id = $patientId;
+        $initial->height = $request->height;
+        $initial->blood_type = $request->blood_type;
+        $initial->save();
+
+        //Insert Data into PatientAddress
+        $patientAddress = new PatientAddress();
+        $patientAddress->patient_id = $patientId;
+        $patientAddress->address = $request->address;
+        $patientAddress->city = $request->city;
+        // $patientAddress->state=$request->state;
+        $patientAddress->save();
+        return redirect('mo_home')->with('success', 'Patient Registration Is Successful!');
+    }
+
+    public function edit($id)
+    {
+        $patient = Patient::where('id', $id)->first();
+        $emergency = PatientEmergencyInfo::where('patient_id', $id)->first();
+        $insurance = PatientInsurance::where('patient_id', $id)->first();
+        $initial = PatientInitialTest::where('patient_id', $id)->first();
+        $patientAddress = PatientAddress::where('patient_id', $id)->first();
+        // dd($patient);
+        return view('mo.patient.patient_edit', compact('patient', 'emergency', 'insurance', 'initial', 'patientAddress'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $patient = Patient::where('id', $id)->first();
+        $user = User::find($patient->user_id);
+        $emergency = PatientEmergencyInfo::where('patient_id', $id)->first();
+        $insurance = PatientInsurance::where('patient_id', $id)->first();
+        $initial = PatientInitialTest::where('patient_id', $id)->first();
+        $patientAddress = PatientAddress::where('patient_id', $id)->first();
+
+        //update User name and email
+        $user->name = $request->name;
+        $user->email = str_replace(' ', '', strtolower($request->name)) . "@gmail.com";
+        $user->update();
+
+        //update Data into patient
+        $patient->name = $request->name;
+        $patient->phno = $request->phno;
+        $patient->nrc = $request->nrc;
+        $patient->dob = $request->dob;
+        $patient->gender = $request->gender;
+        $patient->save();
+
+        //update Data into patient_emergency_info
+        $emergency->contact_name = $request->contact_name;
+        $emergency->contact_number = $request->contact_number;
+        $emergency->contact_address = $request->contact_address;
+        $emergency->save();
+
+        //Update Data into patient_insurance
+        $insurance->company_name = $request->company_name;
+        $insurance->company_contact_number = $request->company_contact_number;
+        $insurance->company_address = $request->company_address;
+        $insurance->medical_plan = $request->medical_plan;
+        $insurance->save();
+
+        //Update Data into PatientInitialtest
+        $initial->height = $request->height;
+        $initial->blood_type = $request->blood_type;
+        $initial->save();
+
+        //Update Data into PatientAddress
+        $patientAddress->address = $request->address;
+        $patientAddress->city = $request->city;
+        $patientAddress->save();
+
+        return redirect('mo_home')->with('success', 'Patient Update Is Successful!');
+    }
+
+    public function delete(Patient $patient)
+    {
+        // dd($patient->id);
+        $emergency = PatientEmergencyInfo::where('patient_id', $patient->id);
+        $insurance = PatientInsurance::where('patient_id', $patient->id);
+        $initial = PatientInitialTest::where('patient_id', $patient->id);
+        $patientAddress = PatientAddress::where('patient_id', $patient->id);
+        $patient->delete();
+        $emergency->delete();
+        $insurance->delete();
+        $initial->delete();
+        $patientAddress->delete();
+        return redirect('mo_home')->with('delete', 'Patient Deletion Is Successful!');
     }
 }
