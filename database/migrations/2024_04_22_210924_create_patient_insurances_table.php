@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('company_contact_number')->nullable();
             $table->string('medical_plan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -11,8 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <!-- css -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
@@ -28,12 +27,9 @@
 
     <!-- template skin -->
     <link id="t-colors" href="color/default.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -47,16 +43,14 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!-- DataTables Buttons CSS -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('plugins/cubeportfolio/css/landingpage.css') }}">
 
     {{-- bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 
@@ -125,9 +119,26 @@
         font-size: 130%;
     }
 
+    table>th,
+    tr {
+        font-size: 1.5rem !important;
+    }
+
     .btn {
         padding: 0.50rem 1.3rem;
-        font-size: 1.10rem;
+        font-size: 1.1rem;
+    }
+
+    @media only screen and (max-width:560px) {
+
+        table>th,
+        td {
+            font-size: 1.3rem !important;
+        }
+
+        .btn {
+            font-size: 0.9rem !important;
+        }
     }
 </style>
 
@@ -141,20 +152,19 @@
         <div class="tab-content clearfix ">
             <div style="margin-top: 5%">
                 @if (session('success'))
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>{{ session('success') }}</strong>
-                    </div>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
                 @endif
 
                 @if (session('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>{{ session('delete') }}</strong>
-                    </div>
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('delete') }}</strong>
+                </div>
                 @endif
                 <h1>Hospital List</h1>
-
             </div>
 
             <div class="tab-pane active" style="margin-top: 6%">
@@ -179,15 +189,15 @@
                         </thead>
                         <tbody>
                             @foreach ($hospitals as $key => $hospital)
-                                <tr>
-                                    <th class="text-center" scope="row">{{ $key + 1 }}</th>
-                                    <td class="text-center">{{ $hospital->hospital_name }}</td>
-                                    <td class="text-center">{{ $hospital->hospital_phone_number }}</td>
+                            <tr>
+                                <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                <td class="text-center">{{ $hospital->hospital_name }}</td>
+                                <td class="text-center">{{ $hospital->hospital_phone_number }}</td>
 
-                                    <td class="text-center">{{ $hospital->hospital_address }}</td>
-                                    <td class="text-center">{{ $hospital->hospital_google_address_link }}</td>
+                                <td class="text-center">{{ $hospital->hospital_address }}</td>
+                                <td class="text-center">{{ $hospital->hospital_google_address_link }}</td>
 
-                                </tr>
+                            </tr>
                             @endforeach
 
                         </tbody>
@@ -200,36 +210,53 @@
 
     </div>
 
-    <div id="bottom-nav">
+    <footer id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <i class="fas fa-home"></i>
                 Home
             </a>
-            <a href="#">
-                <i class="fas fa-search"></i>
-                Search
-            </a>
-            <a href="#">
-                <i class="fas fa-plus"></i>
-                Add
-            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
             <a href="#">
                 <i class="fas fa-heart"></i>
                 Favorites
             </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
             </a>
-
-            {{-- <a href="#" class="text-dark">
-                <i class="fa fa-angle-up">
-                    <i class="fa fa-arrow-up"></i>
-            </a> --}}
-
         </div>
-    </div>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

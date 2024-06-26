@@ -15,7 +15,7 @@
                     <h5 class="text-white" style="font-size: 15px;">Follow me for more !Links clickable in the
                         preview.</h5>
                     <ul class="company-social">
-                        <li class="social-twitter"><a href="#"><i class="fa fa-instagram text-white"></i></a>
+                        <li class="social-twitter"><a href="#"><i class="fa-brands fa-square-instagram fa-instagram text-white"></i></a>
                         </li>
                         <li class="social-facebook"><a href="#"><i class="fa-brands fa-facebook"></i></a>
                         </li>
@@ -37,7 +37,7 @@
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="{{url("/termsofuse")}}">Terms of Use</a></li>
                     </ul>
                 </div>
             </div>
@@ -80,31 +80,48 @@
 
 <footer id="bottom-nav">
     <div class="bottom-nav" style="background-color: #337AB7">
-        <a href="#">
+        <a href="{{ url('/') }}">
             <i class="fas fa-home"></i>
             Home
         </a>
-        <a href="#">
-            <i class="fas fa-search"></i>
-            Search
-        </a>
-        <a href="#">
-            <i class="fas fa-plus"></i>
-            Add
-        </a>
+        @if (Auth::user()->type == 'mo')
+        <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+        @else
+        <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+        @endif
+        <div class="dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+            </a>
+            <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                    <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                    <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                    <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                @elseif(Auth::user()->type == 'patient')
+                    <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                @elseif(Auth::user()->type == 'hospital')
+                    <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                @endif
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                        <span class="text-dark">Logout</span></button>
+                </form>
+            </div>
+        </div>
+        @if (Auth::user()->type == 'mo')
+        <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+        @else
+        <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+        @endif
         <a href="#">
             <i class="fas fa-heart"></i>
             Favorites
         </a>
-        <a href="#">
-            <i class="fas fa-user"></i>
-            Profile
-        </a>
-
         <a href="#" class="text-dark">
-            {{-- <i class="fa fa-angle-up"> --}}
             <i class="fa fa-arrow-up"></i>
         </a>
-
     </div>
 </footer>

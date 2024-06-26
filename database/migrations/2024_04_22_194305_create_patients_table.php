@@ -16,12 +16,15 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('hospital_booking_id')->nullable();
             $table->integer('treatement_id')->nullable();
+            $table->integer('mo_id')->nullable();
             $table->string('name')->nullable();
             $table->string('phno')->nullable();
+            $table->string('email')->nullable();
             $table->string('nrc')->nullable();
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
-
+            $table->string('profile')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

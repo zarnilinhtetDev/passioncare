@@ -119,13 +119,33 @@
         font-size: 130%;
     }
 
+    table th,
+    td {
+        font-size: 1.5rem !important;
+    }
+
     .btn {
-        padding: 0.50rem 1.3rem;
-        font-size: 1.10rem;
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+
+        table th,
+        td {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 8px !important;
+        }
     }
 
     a {
         text-decoration: none;
+    }
+
+    #mo_li:hover #mo_slide {
+        color: black !important;
     }
 </style>
 
@@ -155,6 +175,14 @@
             <strong>{{ session('delete') }}</strong>
         </div>
         @endif
+
+        @if (session('error'))
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{ session('error') }}</strong>
+        </div>
+        @endif
+
         <h3>All Patient</h3>
 
         <a href="{{ route('patient.register') }}" class="btn btn-primary btn-lg mt-4">Add Patient</a>
@@ -168,41 +196,55 @@
                                 <thead class="thead">
                                     <tr>
                                         <th style="background-color: #FAF9F6" scope="col">No.</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Profile</th>
                                         <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
                                         <th style="background-color: #FAF9F6" scope="col">Address</th>
                                         <th style="background-color: #FAF9F6" scope="col">Created Date</th>
-                                        <th style="background-color: #FAF9F6" scope="col"></th>
+                                        <th style="background-color: #FAF9F6" scope="col">Booking Hospital</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Doctor Conservation</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
                                     @foreach ($patients as $key => $patient)
                                     <tr>
-                                        <td scope="row">{{ $key + 1 }}</td>
-                                        <td>{{ $patient->name }}</td>
-                                        <td>{{ $patient->phno }}</td>
+                                        <td scope="row">{{ $no }}</td>
+                                        <td class=" text-center"><a href="{{ asset('profile/'.$patient->profile) }}" target="_blank"><img src="{{asset("profile/".$patient->profile)}}" width="40" height="40" alt="patient profile" style="border-radius:100%; border:1px solid black;"></a></td>
+                                        <td>{{ $patient->name ?? "N/A"}}</td>
+                                        <td>{{ $patient->phno ?? "N/A"}}</td>
                                         @foreach ($patientAddresses as $patientAddress)
                                         @if ($patientAddress->patient_id === $patient->id)
-                                        <td>{{ $patientAddress->address }}</td>
+                                        <td>{{ $patientAddress->address ?? "N/A"}}</td>
                                         @endif
                                         @endforeach
                                         <td>{{ $patient->created_at->format('d-m-Y') }}</td>
+                                        <td class="text-center"><a href="{{url('/booking_req', $patient->id)}}" class="btn btn-secondary mb-2">Booking Hospital</a></td>
+                                        <td class="text-center"><a href="{{url('/reason',$patient->id)}}" class="btn btn-info mb-2 text-white">Doctor Conservation</a></td>
                                         <td class="text-center">
                                             <a href="{{ route('patient.edit', $patient->id) }}" class="btn btn-success mb-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a href="{{ route('patient.delete', $patient->id) }}" class="btn btn-danger mb-2" onclick="return confirm('Are you sure want to delete this Patient?')">
                                                 <i class="fa-solid fa-trash"></i></a>
-                                            <a href="#" class="btn btn-primary mb-2">Create Ticket</a>
                                         </td>
                                     </tr>
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
                                     @endforeach
                                     <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
                         </div>
                         <div class="justify-content-end d-flex">
-                            <a href="">view more</a>
+                            <a href="/view_all_patient">view more</a>
                         </div>
                     </div>
                 </div>
@@ -211,11 +253,9 @@
         </div>
     </div>
 
-    {{-- Booking Request table Section --}}
+
     <div id="exTab1" class="container mt-5 pb-5">
-
-        <h3>Booking Request</h3>
-
+        <h3>MO Waiting List</h3>
         <div class="tab-content clearfix ">
             <div class="tab-pane active mt-5">
                 <div class="card shadow" style="background-color: #F0F5F9">
@@ -225,76 +265,155 @@
                                 <thead class="thead">
                                     <tr>
                                         <th style="background-color: #FAF9F6" scope="col">No.</th>
-                                        <th style="background-color: #FAF9F6" scope="col">MO ID</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Booking ID</th>
                                         <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
-                                        <th style="background-color: #FAF9F6" scope="col">ဆေးခန်းပြသလိုသော
-                                            အကြောင်းအရာ</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Description</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Order Date</th>
                                         <th style="background-color: #FAF9F6" scope="col">Appointment Date</th>
-                                        <th style="background-color: #FAF9F6" scope="col" class="text-center">
-                                            Consultation</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Call Patient</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($patient_records as $key => $patient_record)
+                                    @if($patient_record->ticket_created == "no")
                                     <tr>
-                                        <td scope="row">1</td>
-                                        <td>Agent 1</td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09-754239736</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-success">View Ticket</a>
-                                            <a href="#" class="btn btn-warning">Edit Ticket</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                        <td scope="row">{{$no}}</td>
+                                        <td>
+                                            {{ $patient_record->booking_no }}
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">1</td>
-                                        <td>Agent 2</td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09-754239736</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
+                                        @foreach ($patients as $patient)
+                                        @if ($patient->id == $patient_record->patient_id)
+                                        <td>{{ $patient->name }}</td>
+                                        @endif
+                                        @endforeach
+                                        <td>{{ $patient_record->description }}</td>
+                                        <td>{{ $patient_record->created_at->format('d-m-Y') }}</td>
+                                        @if ($patient_record->date)
+                                        <td>{{ $patient_record->date}}</td>
+                                        @else
+                                        <td class="text-danger">Appointment date မသတ်မှတ်ရသေးပါ။</td>
+                                        @endif
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-success">View Ticket</a>
-                                            <a href="#" class="btn btn-warning">Edit Ticket</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">1</td>
-                                        <td>Agent 3</td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09-754239736</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-success">View Ticket</a>
-                                            <a href="#" class="btn btn-warning">Edit Ticket</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more rows as needed -->
+                                            @if($patient_record->ticket_created == "no")
+                                            <a href="{{url('/create_ticket',$patient_record->id)}}" class="btn btn-primary mb-2">Call Patient</a>
+                                            @else
 
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <div class="justify-content-end d-flex">
-                            <a href="">view more</a>
+                            <a href="{{url('view_all_booking_reason')}}">view more</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    {{-- Booking Request table Section --}}
+    <div id="exTab1" class="container mt-5 pb-5">
+        <h3>Booking Request</h3>
+        <div class="tab-content clearfix ">
+            <div class="tab-pane active mt-5">
+                <div class="card shadow" style="background-color: #F0F5F9">
+                    <div class="card-body">
+                        <div class="table-responsive" style="overflow-y: auto;">
+                            <table class="table table-bordered table-striped mt-5" id="myTable">
+                                <thead class="thead">
+                                    <tr>
+                                        <th style="background-color: #FAF9F6" scope="col">No.</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Booking ID</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Doctor Name</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Hospital Name</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Chief Complaint</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Ordered Date</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Appointment Date
+                                        </th>
+                                        <th style="background-color: #FAF9F6" scope="col">Token No.
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($bookings as $key => $booking)
+                                    <tr>
+                                        <td scope="row">{{$key + 1}}</td>
+                                        <td>
+                                            {{ $booking->booking_no }}
+                                        </td>
+                                        <td>{{ $booking->name }}</td>
+                                        <td>{{ $booking->doctor_name }}</td>
+                                        <td>{{ $booking->hospital_name }}</td>
+                                        <td>{{ $booking->description }}</td>
+                                        <td>{{ $booking->created_at->format('d-m-Y') }}</td>
+                                        <td>
+                                            @if(!isset($booking->date))
+                                            <form action="{{ route('update.booking',$booking->id) }}" method="POST">
+                                                @csrf
+                                                <div class="input-group col-md-12">
+                                                    <input type="datetime-local" class="form-control" name="appointment_date" id="appointment_date" required />
+                                                    <button class="btn btn-primary px-1 py-1" type="submit">Assign</button>
+                                                </div>
+                                            </form>
+                                            @else
+                                            {{ \Carbon\Carbon::parse($booking->date)->format('d-m-Y / h:i A') }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(!isset($booking->token_no))
+                                            <form action="{{ route('token_no',$booking->id) }}" method="POST">
+                                                @csrf
+                                                <div class="input-group col-md-12">
+                                                    <input type="type" class="form-control" name="token_no" id="token_no" required />
+                                                    <button class="btn btn-primary px-1 py-1" type="submit">Assign</button>
+                                                </div>
+                                            </form>
+                                            @else
+                                            {{ $booking->token_no }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="justify-content-end d-flex">
+                            <a href="{{url('view_all_booking')}}">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="exTab1" class="container mt-5 pb-5">
 
         <div class="">
             <ul style="border: 1px solid gray; border-radius:5px;" class="nav nav-pills nav-fill">
-                <li class=" li active text-center" id="mo_li"><a class="tabs" href="#1a" data-toggle="tab" id="mo_slide" style="">Incoming Patient</a></li>
+                <li class=" li active text-center" id="mo_li"><a class="tabs" href="#1a" data-toggle="tab" id="mo_slide">Incoming Patient</a></li>
                 <li class="li text-center" id="mo_li"><a class="tabs" href="#2a" data-toggle="tab" id="mo_slide">MO Ongoing</a></li>
                 <li class="li text-center" id="mo_li"><a class="tabs" href="#3a" data-toggle="tab" id="mo_slide">Hospital Ongoing</a></li>
                 <li class="li text-center " id="mo_li"><a class="tabs" href="#4a" data-toggle="tab" id="mo_slide">Admin Review</a></li>
@@ -310,35 +429,54 @@
                             <table class="table table-bordered table-striped mt-5" id="myTable">
                                 <thead class="thead">
                                     <tr>
-                                        <th style="background-color: #FAF9F6" scope="col">No</th>
+                                        <th style="background-color: #FAF9F6" scope="col">No.</th>
                                         <th style="background-color: #FAF9F6" scope="col">MO ID</th>
                                         <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Description</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Last Update</th>
+                                        <th style="background-color: #FAF9F6" scope="col">ဆေးခန်းပြသလိုသော
+                                            အကြောင်းအရာ</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Appointment Date</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Call Patient</th>
                                         <th style="background-color: #FAF9F6" scope="col" class="text-center">
                                             Consultation</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @if(isset($tickets))
+                                    @foreach ($tickets as $key => $ticket)
+                                    @if ($ticket->called === "no")
                                     <tr>
-                                        <td scope="row">1</td>
-                                        <td>Agent 1</td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09-754239736</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
+                                        <td scope="row">{{$key + 1}}</td>
+                                        <td>MO - {{$ticket->mo_id}}</td>
+                                        <td>{{$ticket->patient_name ?? ""}}</td>
+                                        <td>{{ $ticket->patient_phno }}</td>
+                                        <td>{{$ticket->patient_complaint}} </td>
+                                        <td>{{$ticket->appointment}}</td>
+                                        <td><a href="{{url("call_patient",$ticket->id)}}" class="btn btn-primary">Next Stage</a></td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-primary"> Call Patient </a>
+                                            <a href="{{url("view_ticket",$ticket->id)}}" class="btn btn-success">View Ticket</a>
+                                            <a href="{{url("edit_ticket",$ticket->id)}}" class="btn btn-warning">Edit Ticket</a>
+                                            <a href="{{route('delete_ticket',$ticket->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete this Ticket?')">Delete</a>
                                         </td>
                                     </tr>
+                                    @endif
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    @endif
                                     <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
-                        </div>
-
-                        <div class="justify-content-end d-flex">
-                            <a href="">view more</a>
+                            <div class="justify-content-end d-flex">
+                                <a href="{{url('view_incoming_patient')}}">view more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,35 +486,51 @@
                 <div class="card shadow" style="background-color: #F0F5F9">
                     <div class="card-body">
                         <div class="table-responsive" style="overflow-y: auto;">
-                            <table class="table table-bordered table-striped mt-5" id="myTable1">
+                            <table class="table table-bordered table-striped mt-5" id="myTable">
                                 <thead class="thead">
                                     <tr>
-                                        <th style="background-color: #FAF9F6" scope="col">Ticket No</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Ticket No.</th>
                                         <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
                                         <th style="background-color: #FAF9F6" scope="col">Description</th>
                                         <th style="background-color: #FAF9F6" scope="col">Last Update</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Status</th>
+                                        <th style="background-color: #FAF9F6" scope="col" class="text-center">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($tickets as $key => $ticket)
+                                    @if ($ticket->called === "yes" && $ticket->assigned === "no")
                                     <tr>
-                                        <td>
-                                            <button class="btn btn-primary button" type="button">Ticket
-                                                1</button>
-                                        </td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09123456789</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
-                                        <td>
-                                            Assign MO
+                                        <td><a href="{{url("view_ticket",$ticket->id)}}" class="btn btn-primary">Ticket-{{$ticket->id}}</a></td>
+                                        <td>{{$ticket->patient_name}}</td>
+                                        <td>{{ $ticket->patient_phno }}</td>
+                                        <td>{{$ticket->patient_complaint}} </td>
+                                        <td>{{$ticket->created_at->format("d-m-Y")}}</td>
+                                        <td class="text-center">
+                                            @if ($ticket->ticket_stage == "BookingStageToHospital")
+                                            <span class="text-danger fw-bold">Waiting for the hospital approval</span>
+                                            @else
+                                            <a href="{{url("assign",$ticket->id)}}" class="btn btn-primary">Assign Doctor</a>
+                                            @endif
+
                                         </td>
                                     </tr>
+                                    @endif
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
                             <div class="justify-content-end d-flex">
-                                <a href="">view more</a>
+                                <a href="{{url('view_moongoing')}}">view more</a>
                             </div>
                         </div>
                     </div>
@@ -395,27 +549,47 @@
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
                                         <th style="background-color: #FAF9F6" scope="col">Dr.Name</th>
                                         <th style="background-color: #FAF9F6" scope="col">Appointment Date</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Status</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Hospital</th>
+                                        <th style="background-color: #FAF9F6" scope="col">MO Remark</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($hospital_ongoings as $key => $h_ongoing)
+                                    @if ( ($h_ongoing->ticket->assigned ?? "") == "yes" && !in_array($h_ongoing->ticket_stage, ["MoReviewStage", "CompleteStage"]))
                                     <tr>
+                                        <td><a href="{{url("edit_ticket",$h_ongoing->ticket_id)}}" class="btn btn-primary">Ticket-{{$h_ongoing->ticket_id}}</a></td>
+                                        <td>{{$h_ongoing->patient_name}}</td>
+                                        <td>{{ $h_ongoing->phno }}</td>
                                         <td>
-                                            <button class="btn btn-primary button" type="button">Ticket
-                                                1</button>
+                                            @if ($h_ongoing->patient)
+                                            <a href="{{ asset('profile/'.$h_ongoing->patient->profile) }}" target="_blank"><img src="{{asset("profile/".$h_ongoing->patient->profile)}}" width="30" height="30" alt="hospital profile" style="border-radius:100%; border:1px solid black;"></a>&nbsp;{{$h_ongoing->doctor_name}}
+                                            @else
+                                            {{$h_ongoing->doctor_name}}
+                                            @endif
                                         </td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09123456789</td>
-                                        <td>Dr. Naing Zaw</td>
-                                        <td>22-02-24</td>
-                                        <td>
-                                            Assign MO
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($h_ongoing->appointment_date)->format('d-m-Y / h:i A') }}</td>
+                                        <td class="text-center">
+                                            {{ $h_ongoing->hospital_names }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{$h_ongoing->mo_remark ?? "N/A"}}
                                         </td>
                                     </tr>
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="justify-content-end d-flex">
-                                <a href="">view more</a>
+                                <a href="{{url('view_hospital_ongoing')}}">view more</a>
                             </div>
                         </div>
                     </div>
@@ -433,24 +607,38 @@
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
                                         <th style="background-color: #FAF9F6" scope="col">Description</th>
                                         <th style="background-color: #FAF9F6" scope="col">Completed Date</th>
-
+                                        <th style="background-color: #FAF9F6" scope="col">Stage</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($tickets as $key => $ticket)
+                                    @if ($ticket->assigned == "yes" && $ticket->ticket_stage == "MoReviewStage")
                                     <tr>
-                                        <td>
-                                            <button class="btn btn-primary button" type="button">Ticket
-                                                1</button>
+                                        <td><a href="{{url("edit_ticket",$ticket->id)}}" class="btn btn-primary">Ticket-{{$ticket->id}}</a></td>
+                                        <td>{{$ticket->patient_name}}</td>
+                                        <td>{{ $ticket->patient_phno}}</td>
+                                        <td>{{$ticket->patient_complaint}} </td>
+                                        <td>{{$ticket->updated_at->format("d-m-Y")}}</td>
+                                        <td class="text-center">
+                                            {{ $ticket->ticketStage->ticket_stage ?? "N/A" }}
                                         </td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09123456789</td>
-                                        <td>Lorem Ipsum is a type of placeholder</td>
-                                        <td>22-02-24</td>
                                     </tr>
+                                    @endif
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
                             <div class="justify-content-end d-flex">
-                                <a href="">view more</a>
+                                <a href="{{url("admin_review")}}">view more</a>
                             </div>
                         </div>
                     </div>
@@ -463,35 +651,43 @@
                             <table class="table table-bordered table-striped mt-5" id="myTable">
                                 <thead class="thead">
                                     <tr>
-                                        <th style="background-color: #FAF9F6" scope="col">No</th>
-                                        <th style="background-color: #FAF9F6" scope="col">MO ID</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Ticket No</th>
                                         <th style="background-color: #FAF9F6" scope="col">Patient Name</th>
                                         <th style="background-color: #FAF9F6" scope="col">Phone Number</th>
                                         <th style="background-color: #FAF9F6" scope="col">Description</th>
-                                        <th style="background-color: #FAF9F6" scope="col">Last Update</th>
-                                        <th style="background-color: #FAF9F6" scope="col" class="text-center">
-                                            Consultation</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Completed Date</th>
+                                        <th style="background-color: #FAF9F6" scope="col">Medical Record</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody">
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach ($tickets as $key => $ticket)
+                                    @if ($ticket->assigned === "yes" && $ticket->ticket_stage == "CompleteStage")
                                     <tr>
-                                        <td scope="row">1</td>
-                                        <td>Agent 1</td>
-                                        <td>U Kyaw Kyaw Win</td>
-                                        <td>09-754239736</td>
-                                        <td>Lorem Ipsum is a type of placeholder </td>
-                                        <td>22-02-24</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary"> Call Patient </a>
-                                        </td>
+                                        <td><a href="{{url("view_ticket",$ticket->id)}}" class="btn btn-primary">Ticket-{{$ticket->id}}</a></td>
+                                        <td>{{$ticket->patient_name}}</td>
+                                        <td>{{ $ticket->patient_phno }}</td>
+                                        <td>{{$ticket->patient_complaint}} </td>
+                                        <td>{{$ticket->updated_at->format("d-m-Y")}}</td>
+                                        <td><a href="{{url("medical_record",$ticket->id)}}" class="btn btn-primary">Medical Record</a></td>
                                     </tr>
+                                    @endif
+                                    @php
+                                    $no++;
+                                    @endphp
+                                    @if ($no == 6)
+                                    @break
+                                    @endif
+                                    @endforeach
                                     <!-- Add more rows as needed -->
                                 </tbody>
                             </table>
                         </div>
 
                         <div class="justify-content-end d-flex">
-                            <a href="">view more</a>
+                            <a href="{{url("view_completed")}}">view more</a>
                         </div>
                     </div>
                 </div>
@@ -506,9 +702,3 @@
     @include('landing_page.base')
 
     @include('landing_page.footer_section')
-
-    {{-- <style>
-    @media only screen and (max-width:768px) {
-
-    }
-</style> --}}

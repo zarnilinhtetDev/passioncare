@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('mo_hospitals', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->nullable();
+            $table->string('image')->nullable();
             $table->string('hospital_name')->nullable();
             $table->string('hospital_type')->nullable();
             $table->string('hospital_br_number')->nullable();
@@ -26,8 +28,10 @@ return new class extends Migration
             $table->integer('number_of_physicians')->nullable();
             $table->integer('number_of_nurses')->nullable();
             $table->string('other_staff')->nullable();
+            $table->string('password')->nullable();
             $table->string('emergency_contact')->nullable();
             $table->string('emergency_services')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

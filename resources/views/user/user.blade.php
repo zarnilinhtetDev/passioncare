@@ -84,7 +84,7 @@
         /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        width: 50%;
         /* Could be more or less, depending on screen size */
     }
 
@@ -121,42 +121,57 @@
 
     .btn {
         padding: 0.50rem 1.3rem;
-        font-size: 1.10rem;
+        /* font-size: 1.10rem; */
+    }
+
+    table tr,
+    th,
+    td,
+    input,
+    select,
+    textarea {
+        font-size: 1.5rem !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+        table tr, th, td,input,select,textarea {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 11px !important;
+        }
     }
 </style>
 
 <body>
 
     @include('landing_page.nav')
-
     {{-- Tabs with table Section --}}
     <div id="exTab1" class="container mt-5">
 
         <div class="tab-content clearfix ">
             <div style="margin-top: 5%">
-                @if (session('success'))
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-                @endif
-
-                @if (session('delete'))
+                @if (session('error'))
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>{{ session('delete') }}</strong>
+                    <strong>{{ session('error') }}</strong>
                 </div>
                 @endif
                 <h1>User List</h1>
-                <button id="openModal" class="btn btn-primary mt-5">User Register</button>
+                <button id="openModal" class="btn btn-primary mt-5">Mo Register</button>
             </div>
             <div id="modal" class="modal mt-lg-4 mt-xl-0">
-                <div class="modal-content  rounded-4">
+                <div class="modal-content rounded-4">
                     <div class="modal-header">
                         <h2>User Registration</h2>
                         <!-- <span id="closeModal" class="close">&times;</span> -->
                     </div>
-                    <form action="{{ route('userCreate') }}" method="POST">
+                    <form action="{{ route('userCreate') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
 
@@ -171,27 +186,41 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phno">Phone Number</label>
+                                <input type="phone" class="form-control" id="phno" placeholder="Enter phone number" name="phno">
+                                @error('phno')
+                                <div class="error text-danger"><small>{{ $message }}</small></div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="type">Type</label>
                                 <select class="form-control" name="type" id="type">
                                     <option>Select user Type</option>
-                                    <option value="patient">Patient</option>
                                     <option value="mo">Mo</option>
-                                    <option value="hospital">Hospital</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="level">level</label>
                                 <select class="form-control" name="level" id="level">
-                                    <option>Select user Level</option>
+                                    <option>Select Mo Level</option>
                                     <option value="1">level 1</option>
                                     <option value="2">level 2</option>
                                     <option value="3">level 3</option>
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profile">Profile</label>
+                                <input type="file" class="form-control mb-0 pb-0" id="profile" name="profile" required>
+                                @error('profile')
+                                <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
@@ -210,16 +239,37 @@
                 </div>
             </div>
             <div class="tab-pane active" style="margin-top: 6%">
+                @if (session('success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
+                @endif
 
+                @if (session('delete'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('delete') }}</strong>
+                </div>
+                @endif
+                @if (session('img_error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('img_error') }}</strong>
+                </div>
+                @endif
                 <div class="table-responsive" style="overflow-y: auto;">
                     <table class="table table-bordered " id="example-1">
                         <thead>
                             <tr>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">No.</th>
+                                {{-- <th style="background-color: #FAF9F6" scope="col">Profile</th> --}}
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">
                                     Name
                                 </th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Email
+                                </th>
+                                <th style="background-color: #F0F3F8" scope="col" class="text-center">Phone
                                 </th>
                                 <th style="background-color: #F0F3F8" scope="col " class="text-center">Type
                                 </th>
@@ -232,9 +282,10 @@
                             @foreach ($userData as $key => $user)
                             <tr>
                                 <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                {{-- <td class=" text-center"><a href="{{ asset('profile/'.$user->profile) }}" target="_blank"><img src="{{asset("profile/".$user->profile)}}" width="40" height="40" alt="hospital profile" style="border-radius:100%; border:1px solid black;"></a></td> --}}
                                 <td class="text-center">{{ $user->name }}</td>
                                 <td class="text-center">{{ $user->email }}</td>
-
+                                <td class="text-center">{{ $user->phno }}</td>
                                 <td class="text-center">{{ $user->type }}</td>
                                 <td class="text-center">{{ $user->level }}</td>
                                 <td class="text-center">{{ $user->created_at->format('d-m-Y') }}</td>
@@ -259,36 +310,53 @@
 
     </div>
 
-    <div id="bottom-nav">
+    <footer id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <i class="fas fa-home"></i>
                 Home
             </a>
-            <a href="#">
-                <i class="fas fa-search"></i>
-                Search
-            </a>
-            <a href="#">
-                <i class="fas fa-plus"></i>
-                Add
-            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
             <a href="#">
                 <i class="fas fa-heart"></i>
                 Favorites
             </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
             </a>
-
-            {{-- <a href="#" class="text-dark">
-                <i class="fa fa-angle-up">
-                    <i class="fa fa-arrow-up"></i>
-            </a> --}}
-
         </div>
-    </div>
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

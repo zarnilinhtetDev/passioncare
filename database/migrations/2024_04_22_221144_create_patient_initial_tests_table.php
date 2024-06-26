@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('weight')->nullable();
             $table->string('blood_type')->nullable();
             $table->string('bmi')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -44,13 +44,10 @@
     <div id="wrapper" style="background-color: #F0F5F9; font-family: Arial, Helvetica, sans-serif;">
 
         {{-- navbar --}}
-        <nav class="navbar navbar-expand-lg navbar-dark"
-            style="background-color: #337AB7; position: fixed; width: 100%; z-index: 1000; padding: 5px 10px; font-size: 12px;border-radius:0;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #337AB7; position: fixed; width: 100%; z-index: 1000; padding: 5px 10px; font-size: 12px;border-radius:0;">
             <div class="container-fluid">
-                <a class="navbar-brand custom-font col" href="#"
-                    style="background: linear-gradient(45deg, #337AB7, #3a89eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                    <img style="width: 20%;" src="" alt="" class="m-1"><span
-                        style="font-size: 15px"></span>
+                <a class="navbar-brand custom-font col" href="#" style="background: linear-gradient(45deg, #337AB7, #3a89eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <img style="width: 20%;" src="" alt="" class="m-1"><span style="font-size: 15px"></span>
                 </a>
                 <a class="text-white" href=""><i class="fa fa-comment fa-1x"></i></a>
                 <a class="mx-3 text-white" href=""><i class="fa fa-bell fa-1x"></i></a>
@@ -58,8 +55,7 @@
 
                     <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="text-white">{{ auth()->user()->name }}</span>
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
                     </div>
                     <div class="dropdown-menu" style="background-color: #F0F5F9">
@@ -82,8 +78,7 @@
         <section>
             <div class="container">
 
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-ride-interval="1000"
-                    style="width: 110%;margin-left: -6%">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-ride-interval="1000" style="width: 110%;margin-left: -6%">
                     <!-- Indicators -->
                     {{-- <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -95,9 +90,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img id="image"
-                                src="https://c8.alamy.com/comp/2AT7Y9Y/female-doctor-smiling-on-the-background-with-patient-in-the-bed-and-two-doctors-2AT7Y9Y.jpg"
-                                alt="Los Angeles">
+                            <img id="image" src="https://c8.alamy.com/comp/2AT7Y9Y/female-doctor-smiling-on-the-background-with-patient-in-the-bed-and-two-doctors-2AT7Y9Y.jpg" alt="Los Angeles">
                             <div id="caption" class="carousel-caption d-md-block">
                                 <h5 id="title" style="color: #158CB7; font-weight: bold;">
                                     Full Body Check today</h5>
@@ -109,12 +102,9 @@
                         </div>
 
                         <div class="item">
-                            <img id="image"
-                                src="https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg"
-                                alt="Chicago">
+                            <img id="image" src="https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg" alt="Chicago">
                             <div class="carousel-caption d-md-block">
-                                <h5 id="title"
-                                    style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
+                                <h5 id="title" style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
                                     Full Body Check today</h5>
                                 <p id="text" style="font-weight: bold;">Lorem ipsum dolor sit amet
                                     consectetur
@@ -124,12 +114,9 @@
                         </div>
 
                         <div class="item">
-                            <img id="image"
-                                src="https://img.freepik.com/premium-photo/portrait-mature-male-doctor-wearing-white-coat-standing-hospital-corridor_562859-3453.jpg"
-                                alt="New york">
+                            <img id="image" src="https://img.freepik.com/premium-photo/portrait-mature-male-doctor-wearing-white-coat-standing-hospital-corridor_562859-3453.jpg" alt="New york">
                             <div class="carousel-caption d-md-block">
-                                <h5 id="title"
-                                    style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
+                                <h5 id="title" style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
                                     Full Body Check today</h5>
                                 <p id="text" style="font-weight: bold;">Lorem ipsum dolor sit amet
                                     consectetur
@@ -158,21 +145,17 @@
             <div class="container mt-5">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Medicine Delivery</div>
                                 <div class="col-md-12 mt-5">
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -180,8 +163,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Weight Management Program
                                 </div>
@@ -189,13 +171,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -203,8 +182,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">On Your First Consultation
                                 </div>
@@ -212,13 +190,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -226,8 +201,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Ayushman Vital Health
                                     Check</div>
@@ -235,13 +209,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -249,8 +220,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Ayushman Vital Health
                                     Check</div>
@@ -258,13 +228,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -498,14 +465,11 @@
                 </div>
                 <div class="swiper mySwiper1">
                     <div class="swiper-wrapper">
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg"
-                                            alt="" class="person" />
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg" alt="" class="person" />
                                         <a id="swiper-text" class="text-dark" title="" href="#">SSC</a>
                                         {{-- <span>Chicago, Illinois</span> --}}
                                     </div>
@@ -513,30 +477,23 @@
 
                             </div>
                         </div>
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg"
-                                            alt="" class="person" />
-                                        <a id="swiper-text" class="text-dark" title=""
-                                            href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg" alt="" class="person" />
+                                        <a id="swiper-text" class="text-dark" title="" href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
                                         {{-- <span>San Antonio, Texas</span> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg"
-                                            alt="" class="person" />
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg" alt="" class="person" />
                                         <a id="swiper-text" class="text-dark" title="" href="#">SSC</a>
                                         {{-- <span>Chicago, Illinois</span> --}}
                                     </div>
@@ -544,30 +501,23 @@
 
                             </div>
                         </div>
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg"
-                                            alt="" class="person" />
-                                        <a id="swiper-text" class="text-dark" title=""
-                                            href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg" alt="" class="person" />
+                                        <a id="swiper-text" class="text-dark" title="" href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
                                         {{-- <span>San Antonio, Texas</span> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg"
-                                            alt="" class="person" />
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://myanmartravel.com/images/2020/06/Shwe-Gon-Dine-SSC-Specialist-Centre.jpg" alt="" class="person" />
                                         <a id="swiper-text" class="text-dark" title="" href="#">SSC</a>
                                         {{-- <span>Chicago, Illinois</span> --}}
                                     </div>
@@ -575,17 +525,13 @@
 
                             </div>
                         </div>
-                        <div class="col-md-4 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="col-md-4 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="person-text rel text-dark">
-                                        <img id="swiper-image" style="border-radius: 10%"
-                                            src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg"
-                                            alt="" class="person" />
-                                        <a id="swiper-text" class="text-dark" title=""
-                                            href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
+                                        <img id="swiper-image" style="border-radius: 10%" src="https://cdn.myanmarseo.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/1644-sskm.jpg" alt="" class="person" />
+                                        <a id="swiper-text" class="text-dark" title="" href="#">ရန်ကုန်ပြည်သူဆေးရုံကြီး</a>
                                         {{-- <span>San Antonio, Texas</span> --}}
                                     </div>
                                 </div>
@@ -617,9 +563,7 @@
                         <div class="partner card shadow" style="background-color: #CFECF5;border-radius: 15px">
                             <div class="card-body">
                                 <div>Consultation</div>
-                                <a href="#" class="mx-2"><img style="width: 25%"
-                                        src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png"
-                                        alt="" /></a>
+                                <a href="#" class="mx-2"><img style="width: 25%" src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -627,9 +571,7 @@
                         <div class="partner card shadow " style="background-color: #CFECF5;border-radius: 15px">
                             <div class="card-body">
                                 <div>Lab Tests</div>
-                                <a href="#" class="mx-2"><img style="width: 25%"
-                                        src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png"
-                                        alt="" /></a>
+                                <a href="#" class="mx-2"><img style="width: 25%" src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -637,9 +579,7 @@
                         <div class="partner card shadow " style="background-color: #CFECF5;border-radius: 15px">
                             <div class="card-body">
                                 <div>Health Package</div>
-                                <a href="#" class="mx-2"><img style="width: 25%"
-                                        src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png"
-                                        alt="" /></a>
+                                <a href="#" class="mx-2"><img style="width: 25%" src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -647,9 +587,7 @@
                         <div class="partner card shadow" style="background-color: #CFECF5;border-radius: 15px">
                             <div class="card-body">
                                 <div>Scans & X-Rays</div>
-                                <a href="#" class="mx-2"><img style="width: 25%"
-                                        src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png"
-                                        alt="" /></a>
+                                <a href="#" class="mx-2"><img style="width: 25%" src="https://drdfox.com/wp-content/uploads/2023/03/Consult-image.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -660,10 +598,7 @@
         {{-- location section --}}
         <section style="margin-top: 8%" id="location">
             <div class="mt-5 justify-content-center d-flex">
-                <iframe class="location"
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15277.507476593084!2d96.18452180000001!3d16.807649799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1smy!2smm!4v1709693418058!5m2!1smy!2smm"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="location" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15277.507476593084!2d96.18452180000001!3d16.807649799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1smy!2smm!4v1709693418058!5m2!1smy!2smm" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
 
@@ -761,34 +696,56 @@
 
         <footer id="bottom-nav">
             <div class="bottom-nav" style="background-color: #337AB7">
-                {{-- <a href="#">
+                <a href="{{ url('/') }}">
                     <i class="fas fa-home"></i>
                     Home
                 </a>
+                @if (Auth::user()->type == 'mo')
+                <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+                @else
+                <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+                @endif
+                <div class="dropdown">
+                    <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                    </a>
+                    <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                        @if (Auth::user()->type == 'mo')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        @else
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout" style="width: 30px">Profile</a>
+                        @endif
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                                <span class="text-dark">Logout</span></button>
+                        </form>
+                    </div>
+                </div>
+                @if (Auth::user()->type == 'mo')
+                <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+                @else
+                <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+                @endif
                 <a href="#">
-                    <i class="fas fa-search"></i>
-                    Search
-                </a>
-                <a href="#">
-                    <i class="fas fa-plus"></i>
-                    Add
-                </a> --}}
-                {{-- <a href="#">
                     <i class="fas fa-heart"></i>
                     Favorites
-                </a> --}}
-                {{-- <a href="#">
-                    <i class="fas fa-user"></i>
-                    Profile
-                </a> --}}
-
+                </a>
                 <a href="#" class="text-dark">
-                    {{-- <i class="fa fa-angle-up"> --}}
                     <i class="fa fa-arrow-up"></i>
                 </a>
-
             </div>
         </footer>
+
+
+
+
+
+
+
+
+
+
 
 
 

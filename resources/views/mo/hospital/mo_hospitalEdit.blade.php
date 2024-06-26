@@ -56,6 +56,37 @@
     #example-1_paginate {
         text-align: left;
     }
+
+    .card,
+    table tr,
+    th,
+    td,
+    input,
+    select,
+    textarea {
+        font-size: 1.5rem !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+
+        .card,
+        table tr,
+        th,
+        td,
+        input,
+        select,
+        textarea {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 11px !important;
+        }
+    }
 </style>
 
 <body>
@@ -72,9 +103,9 @@
             <div class="" style="margin-top: 2%">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="card shadow col-xl-10 mx-auto px-0 px-lg-2 pb-md-4 mb-3 mb-sm-0">
+                        <div class="card shadow col-xl-10 mx-auto px-0 px-lg-2 pb-md-4 mb-5 mb-sm-0">
                             <div class="card-body">
-                                <form action="{{ route('hospital.update', $hospital->id) }}" method="POST" class="mt-5">
+                                <form action="{{ route('hospital.update', $hospital->id) }}" method="POST" class="mt-5" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <h4 style="text-decoration:underline;">Hospital Information</h4>
@@ -111,6 +142,9 @@
                                             <div class="form-group">
                                                 <label for="hospital_phone_number">Phone Number</label>
                                                 <input type="tel" class="form-control" id="hospital_phone_number" name="hospital_phone_number" value="{{ $hospital->hospital_phone_number }}" placeholder=" Enter Hospital phone number" required>
+                                                @error('hospital_phone_number')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4">
@@ -122,13 +156,31 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-group col-12 col-md-8">
+                                        <div class="col-12 col-md-4">
+                                            <div class="form-group">
+                                                <label for="hospital_image">Hospital Image</label>
+                                                <input type="file" class="form-control" id="hospital_image" name="hospital_image" placeholder="Enter Hospital Image">
+                                                <input type="hidden" name="old_file" value="{{$hospital->image}}">
+                                                @error('hospital_image')
+                                                <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 col-md-4">
                                             <label for="hospital_google_address_link">GPS Location Address</label>
                                             <div class="input-group">
-                                                <input type="hospital_google_address_link" class="form-control" id="hospital_google_address_link" name="hospital_google_address_link" value="{{ $hospital->hospital_google_address_link }}" placeholder=" Enter Google Address Link">
+                                                <input type="hospital_google_address_link" class="form-control" id="hospital_google_address_link" name="hospital_google_address_link" placeholder="Enter Google Address Link" value="{{ $hospital->hospital_google_address_link }}">
                                                 <button type="button" id="copyLinkBtn" class="btn btn-primary"> <i class="fa-solid fa-paperclip"></i></button>
                                             </div>
                                         </div>
+                                        <!-- @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                                        <div class="col-12 col-md-4">
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" value="{{ $hospital->password }}">
+                                            </div>
+                                        </div>
+                                        @endif -->
                                     </div>
 
                                     <hr>
@@ -215,27 +267,81 @@
 
     </div>
 
-    @include('landing_page.footer_section')
+    <footer id="bottom-nav">
+        <div class="bottom-nav" style="background-color: #337AB7">
+            <a href="{{ url('/') }}">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
 
-</body>
 
-</html>
-<script>
-    document.getElementById("copyLinkBtn").addEventListener("click", function() {
-        var copyText = document.getElementById("hospital_google_address_link");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-    });
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script> -->
-<script>
-    $(document).ready(function() {
-        $('#example-1').DataTable({
-            "lengthChange": false,
-            "searching": false
+
+
+
+
+
+
+
+
+    <script>
+        document.getElementById("copyLinkBtn").addEventListener("click", function() {
+            var copyText = document.getElementById("hospital_google_address_link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
         });
-    });
-</script>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('#example-1').DataTable({
+                "lengthChange": false,
+                "searching": false
+            });
+        });
+    </script>
+
+    @include('landing_page.footer_section')

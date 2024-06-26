@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('mo_doctors', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
             $table->string('doctor_name')->nullable();
+            $table->string('profile')->nullable();
+            $table->string('doctor_email')->nullable();
             $table->string('medical_license')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('degree')->nullable();
@@ -24,8 +27,9 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('other_certification')->nullable();
             $table->string('address')->nullable();
-            $table->string('from_fees')->nullable();
-            $table->string('to_fees')->nullable();
+            $table->bigInteger('from_fees')->nullable();
+            $table->bigInteger('to_fees')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

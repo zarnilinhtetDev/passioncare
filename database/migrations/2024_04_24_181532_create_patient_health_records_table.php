@@ -14,8 +14,14 @@ return new class extends Migration
         Schema::create('patient_health_records', function (Blueprint $table) {
             $table->id();
             $table->integer('patient_id')->nullable();
+            $table->string('booking_no')->nullable();
             $table->string('description')->nullable();
             $table->string('file')->nullable();
+            $table->string('date')->nullable();
+            $table->string('waiting_time')->nullable();
+            $table->string('waiting_qty')->nullable();
+            $table->string('ticket_created')->default("no");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

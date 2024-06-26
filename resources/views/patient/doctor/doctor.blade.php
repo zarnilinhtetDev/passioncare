@@ -111,15 +111,41 @@
         font-size: 130%;
     }
 
+    table>th,
+    td,
+    tr {
+        font-size: 1.5rem !important;
+    }
+
+    .card {
+        font-size: 1.4rem !important;
+    }
+
     .btn {
         padding: 0.50rem 1.3rem;
-        font-size: 1.10rem;
+        font-size: 1.1rem;
+    }
+
+
+    @media only screen and (max-width:560px) {
+
+        table>th,
+        td,
+        tr {
+            font-size: 1.3rem !important;
+        }
+
+        .btn {
+            font-size: 0.9rem !important;
+        }
+
+        .card {
+            font-size: 1.2rem !important;
+        }
     }
 </style>
 
 <body>
-
-
 
     @include('landing_page.nav')
 
@@ -132,8 +158,8 @@
                 <h1>Doctor List</h1>
 
 
-                <div class="card shadow rounded-3" style="margin-top: 2%">
-                    <div class="card-body ">
+                <div class="card shadow rounded-3 py-5 px-5 px-md-0 ps-md-5" style="margin-top: 2%">
+                    <div class="card-body">
                         <form action="{{ url('doctor') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -184,18 +210,19 @@
                                         <label for="inputPassword" class="col-sm-3 col-form-label">Charges
                                             Fees:</label>
 
-                                        <label for="doctor_charges_fees_from" class="col-sm-1 col-form-label">From</label>
                                         <div class="col-sm-3">
+                                            <label for="doctor_charges_fees_from" class="col-form-label">From</label>
                                             <input type="text" class="form-control" id="doctor_charges_fees_from" name="doctor_charges_fees_from">
                                         </div>
-                                        <label for="doctor_charges_fees_to" class="col-sm-1 col-form-label">To</label>
+
                                         <div class="col-sm-3">
+                                            <label for="doctor_charges_fees_to" class="col-form-label">To</label>
                                             <input type="text" class="form-control" id="doctor_charges_fees_to" name="doctor_charges_fees_to">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-5 justify-content-end d-flex" style="height: 20%">
+                                <div class="col-md-5 mt-md-5 justify-content-end d-flex" style="height: 20%">
                                     <button type="submit" class="btn btn-primary ">Search</button>
                                 </div>
                             </div>
@@ -210,6 +237,7 @@
                         <thead>
                             <tr>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">No.</th>
+                                <th style="background-color: #F0F3F8" scope="col" class="text-center">Profile</th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Dr.Name</th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Specialities
                                 </th>
@@ -217,7 +245,8 @@
                                 </th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Hospital
                                     Name</th>
-                                <th style="background-color: #F0F3F8" scope="col" class="text-center">Fees</th>
+                                <th style="background-color: #F0F3F8" scope="col" class="text-center">From Fees</th>
+                                <th style="background-color: #F0F3F8" scope="col" class="text-center">To Fees</th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">TownShip
                                 </th>
 
@@ -227,6 +256,7 @@
                             @foreach ($doctors as $key => $doctor)
                             <tr>
                                 <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                <td class="text-center"><img src="{{asset("profile/".$doctor->profile)}}" width="40" height="40" alt="doctor profile" style="border-radius:100%; border:1px solid black;"></td>
                                 <td class="text-center">{{ $doctor->doctor_name }}</td>
                                 <td class="text-center">{{ $doctor->doctor_specialities }}</td>
                                 <td class="text-center">{{ $doctor->phone_number }}</td>
@@ -235,7 +265,8 @@
                                     {{ $doc->hospitalname }} <br>
                                     @endforeach
                                 </td>
-                                <td class="text-center">{{ $doctor->address }}</td>
+                                <td class="text-center">{{ $doctor->from_fees }}</td>
+                                <td class="text-center">{{ $doctor->to_fees }}</td>
                                 <td class="text-center">{{ $doctor->city }}</td>
 
                             </tr>
@@ -255,34 +286,52 @@
     </div>
     <footer id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <i class="fas fa-home"></i>
                 Home
             </a>
-            <a href="#">
-                <i class="fas fa-search"></i>
-                Search
-            </a>
-            <a href="#">
-                <i class="fas fa-plus"></i>
-                Add
-            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
             <a href="#">
                 <i class="fas fa-heart"></i>
                 Favorites
             </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
             </a>
-
-            {{-- <a href="#" class="text-dark">
-                <i class="fa fa-angle-up">
-                    <i class="fa fa-arrow-up"></i>
-            </a> --}}
-
         </div>
     </footer>
+
     @include('landing_page.footer_section')
 
 </body>

@@ -53,6 +53,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
+<style>
+    .card,
+    table tr,
+    th,
+    td,
+    input,
+    select,
+    textarea {
+        font-size: 1.5rem !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+
+        .card,
+        table tr,
+        th,
+        td,
+        input,
+        select,
+        textarea {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 11px !important;
+        }
+    }
+</style>
 
 <body>
 
@@ -68,7 +100,7 @@
                         <h2 class="fw-bold">Patient Edit</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('patient.update',$patient->id)}}" method="POST" class="">
+                        <form action="{{route('patient.update',$patient->id)}}" method="POST" class="" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <h4 style="text-decoration:underline;">Patient Information</h4>
@@ -81,9 +113,20 @@
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="phno" class="">Phone Number</label>
-                                        <input type="text" class="form-control" id="phno" name="phno" value="{{$patient->phno}}" placeholder="Enter Patient Phone Number" required>
+                                        <input type="tel" class="form-control" id="phno" name="phno" value="{{$patient->phno}}" placeholder="Enter Patient Phone Number" required>
+                                        @error('phno')
+                                        <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                        @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="email" class="">Email Address</label>
+                                        <input type="text" class="form-control" id="email" name="email" value="{{$patient->email}}" placeholder=" Enter Patient Email" required>
+                                    </div>
+                                </div>
+
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
                                         <label for="nrc" class="">NRC Number</label>
@@ -138,12 +181,42 @@
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <textarea name="address" id="address" class="form-control" rows="5">{{$patientAddress->address}}</textarea>
+                                        <label for="dob" class="">Weight</label>
+                                        <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter Weight" value="{{$initial->weight}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="BMI" class="">BMI</label>
+                                        <input type="text" class="form-control" id="BMI" name="BMI" value="{{$initial->bmi}}" placeholder="Enter BMI" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="state" name="state" id="state" value="{{$patientAddress->state}}" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="row mt-4">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea name="address" id="address" class="form-control" rows="5">{{$patientAddress->address}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="profile">Profile Picture</label>
+                                        <input type="file" name="profile" id="profile" class="form-control">
+                                        <input type="hidden" name="old_profile" value="{{$patient->profile}}">
+                                        @error('profile')
+                                        <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
                             <div class="row mt-4">
                                 <h4 style="text-decoration:underline;">Emergency Information</h4>
@@ -159,7 +232,7 @@
                                         <input type="text" class="form-control" id="contact_number" name="contact_number" value="{{$emergency->contact_number}}" placeholder="Enter Emergency Contact Number" required>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="contact_address">Address</label>
                                         <textarea name="contact_address" id="contact_address" class="form-control" rows="5">{{$emergency->contact_address}}</textarea>
@@ -217,32 +290,49 @@
 
     <footer id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <i class="fas fa-home"></i>
                 Home
             </a>
-            <a href="#">
-                <i class="fas fa-search"></i>
-                Search
-            </a>
-            <a href="#">
-                <i class="fas fa-plus"></i>
-                Add
-            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
             <a href="#">
                 <i class="fas fa-heart"></i>
                 Favorites
             </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
-            </a>
-
             <a href="#" class="text-dark">
-                {{-- <i class="fa fa-angle-up"> --}}
                 <i class="fa fa-arrow-up"></i>
             </a>
-
         </div>
     </footer>
 

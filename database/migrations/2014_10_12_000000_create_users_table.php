@@ -13,15 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("doctor_id")->nullable();
+            $table->unsignedBigInteger("patient_id")->nullable();
+            $table->unsignedBigInteger("hospital_id")->nullable();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
+            $table->string('phno')->unique();
             $table->string('google_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('type')->default('patient');
-            $table->string('level')->default(1);
+            $table->string('level')->default(2);
+            $table->string('profile')->nullable();
             $table->boolean('is_admin')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

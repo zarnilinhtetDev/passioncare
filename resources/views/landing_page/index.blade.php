@@ -44,7 +44,7 @@
     <div id="wrapper" style="background-color: #ffffff; font-family: Arial, Helvetica, sans-serif;" class="justify-content-end">
 
         {{-- navbar --}}
-       <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
 
 
             <div class="row" style="background-color: #337AB7; position: fixed; width: 100%; z-index: 1000; padding: 5px 10px; font-size: 12px;border-radius:0;">
@@ -55,32 +55,32 @@
                 </div>
                 <div class="col-8">
 
-                        <ul class="navbar nav-fill" style="list-style: none; text-decoration:none; border-bottom:none;">
-                            <li class="nav-item">
+                    <ul class="navbar nav-fill" style="list-style: none; text-decoration:none; border-bottom:none;">
+                        <li class="nav-item">
                             <a class="nav-link text-white fs-4" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white fs-4" href="#">Hospital</a>
-                            </li>
-                            <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white fs-4" href="#">Doctors</a>
-                            </li>
-                            <li class="nav-item" style="cursor: pointer !important">
+                        </li>
+                        <li class="nav-item" style="cursor: pointer !important">
                             <a class="nav-link text-white fs-4">Our Services</a>
-                            </li>
-                            <li class="nav-item" style="cursor: pointer !important">
-                                <a class="nav-link text-white fs-4">Activity</a>
-                            </li>
-                            <li class="nav-item" style="cursor: pointer !important">
+                        </li>
+                        <li class="nav-item" style="cursor: pointer !important">
+                            <a class="nav-link text-white fs-4">Activity</a>
+                        </li>
+                        <li class="nav-item" style="cursor: pointer !important">
                             <a class="nav-link text-white fs-4">About us</a>
-                            </li>
-                            <li class="nav-item" style="cursor: pointer !important">
+                        </li>
+                        <li class="nav-item" style="cursor: pointer !important">
                             <a class="nav-link text-white fs-4">Map</a>
-                            </li>
-                            <li class="nav-item" style="cursor: pointer !important">
+                        </li>
+                        <li class="nav-item" style="cursor: pointer !important">
                             <a class="nav-link text-white fs-4">Help</a>
-                            </li>
-                        </ul>
+                        </li>
+                    </ul>
 
                 </div>
                 <div class="col-2">
@@ -118,9 +118,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img id="image" class="img"
-                                src="https://c8.alamy.com/comp/2AT7Y9Y/female-doctor-smiling-on-the-background-with-patient-in-the-bed-and-two-doctors-2AT7Y9Y.jpg"
-                                alt="Los Angeles">
+                            <img id="image" class="img" src="https://c8.alamy.com/comp/2AT7Y9Y/female-doctor-smiling-on-the-background-with-patient-in-the-bed-and-two-doctors-2AT7Y9Y.jpg" alt="Los Angeles">
                             <div id="caption" class="carousel-caption d-md-block">
                                 <h5 id="title" style="color: #158CB7; font-weight: bold;">
                                     Full Body Check today</h5>
@@ -132,12 +130,9 @@
                         </div>
 
                         <div class="item">
-                            <img id="image" class="img"
-                                src="https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg"
-                                alt="Chicago">
+                            <img id="image" class="img" src="https://t4.ftcdn.net/jpg/03/20/52/31/360_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg" alt="Chicago">
                             <div class="carousel-caption d-md-block">
-                                <h5 id="title"
-                                    style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
+                                <h5 id="title" style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
                                     Full Body Check today</h5>
                                 <p id="text" style="font-weight: bold;">Lorem ipsum dolor sit amet
                                     consectetur
@@ -147,12 +142,9 @@
                         </div>
 
                         <div class="item">
-                            <img id="image" class="img"
-                                src="https://img.freepik.com/premium-photo/portrait-mature-male-doctor-wearing-white-coat-standing-hospital-corridor_562859-3453.jpg"
-                                alt="New york">
+                            <img id="image" class="img" src="https://img.freepik.com/premium-photo/portrait-mature-male-doctor-wearing-white-coat-standing-hospital-corridor_562859-3453.jpg" alt="New york">
                             <div class="carousel-caption d-md-block">
-                                <h5 id="title"
-                                    style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
+                                <h5 id="title" style="color: #158CB7; font-weight: bold;font-family: 'Poppins', sans-serif;">
                                     Full Body Check today</h5>
                                 <p id="text" style="font-weight: bold;">Lorem ipsum dolor sit amet
                                     consectetur
@@ -181,21 +173,17 @@
             <div class="container mt-5">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Medicine Delivery</div>
                                 <div class="col-md-12 mt-5">
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -203,8 +191,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Weight Management Program
                                 </div>
@@ -212,13 +199,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -226,8 +210,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">On Your First Consultation
                                 </div>
@@ -235,13 +218,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -249,8 +229,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Ayushman Vital Health
                                     Check</div>
@@ -258,13 +237,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -272,8 +248,7 @@
 
                             </div>
                         </div>
-                        <div class="card col-md-6 swiper-slide"
-                            style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
+                        <div class="card col-md-6 swiper-slide" style="background-color: #F0F5F9;border-radius: 10px;width: 500px">
                             <div class="row g-0 card-body">
                                 <div class="offer-type" title="Ayushman Vital Health Check">Ayushman Vital Health
                                     Check</div>
@@ -281,13 +256,10 @@
                                     <div class="row">
                                         <button class="offer-highlight col" style="font-size: 55%;height: 40px;">Up to
                                             20% Off</button>
-                                        <img class="col"
-                                            src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg"
-                                            alt="arrows" width="40%" height="40px" loading="lazy">
+                                        <img class="col" src="https://www.mfine.co/wp-content/themes/Divi/new-assets/icons/Arrow.svg" alt="arrows" width="40%" height="40px" loading="lazy">
                                         <div class="col d-flex justify-content-end">
                                             <div class="offer-img">
-                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp"
-                                                    alt="Offer Image" class="img-fluid">
+                                                <img src="https://dg0qqklufr26k.cloudfront.net/wp-content/uploads/2023/12/downloadFromDb-6-1.webp" alt="Offer Image" class="img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -305,7 +277,7 @@
         <section class="mt-5">
             <div class="container mt-5">
                 <div class="row d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 gap-lg-0">
-                    <div class="wow-box" style="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                n border-radius: 10px;">
+                    <div class="wow-box" style=" border-radius: 10px;">
                         <div class="wow wowInfo fadeInUp bg-skin d-flex flex-column align-items-center justify-content-center" data-wow-delay="0.2s">
                             <i class="fa fa-check fa-3x circled pt-2"></i>
                             <div class="font pb-2 text-white fs-3" style="font-weight: bold;">ဆရာဝန်နဲ့ တိုင်ပင်ဆွေးနွေးရန်</div>
@@ -322,7 +294,7 @@
                     <div class="card text-box">
                         <div class="card-body fs-3 text-center lh-lg">
                             ဆရာဝန်နှင့် တိုင်ပင်ဆွေးနွေးရန် ချိန်းဆိုထားပါသည်။ <br>
-                            သင်ရှေ့တွင် လူနာ (၅) ဦးရှိပါသဖြင့် ခန့်မှန်းကြာချိန် (  ) နာရီ  (  ) မိနစ်စောင့်ဆိုင်းရမည် ဖြစ်ပါသည်။ <br>
+                            သင်ရှေ့တွင် လူနာ (၅) ဦးရှိပါသဖြင့် ခန့်မှန်းကြာချိန် ( ) နာရီ ( ) မိနစ်စောင့်ဆိုင်းရမည် ဖြစ်ပါသည်။ <br>
                             ဆရာဝန်မှ ဖုန်းဖြင့်ပြန်လည်ဆက်သွယ်ပေးမည်ဖြစ်ပါ၍ ခေတ္တစောင့်ဆိုင်းပေးပါရန် အသိပေးအပ်ပါသည်။
                         </div>
                     </div>
@@ -472,85 +444,110 @@
 
         <footer id="bottom-nav">
             <div class="bottom-nav" style="background-color: #337AB7">
-                <a href="#">
+                <a href="{{ url('/') }}">
                     <i class="fas fa-home"></i>
                     Home
                 </a>
-                <a href="#">
-                    <i class="fas fa-search"></i>
-                    Search
-                </a>
-                <a href="#">
-                    <i class="fas fa-plus"></i>
-                    Add
-                </a>
+                @if (Auth::user()->type == 'mo')
+                <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+                @else
+                <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+                @endif
+                <div class="dropdown">
+                    <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                    </a>
+                    <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                        @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                        @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                        @endif
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                                <span class="text-dark">Logout</span></button>
+                        </form>
+                    </div>
+                </div>
+                @if (Auth::user()->type == 'mo')
+                <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+                @else
+                <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+                @endif
                 <a href="#">
                     <i class="fas fa-heart"></i>
                     Favorites
                 </a>
-                <a href="#">
-                    <i class="fas fa-user"></i>
-                    Profile
-                </a>
-
                 <a href="#" class="text-dark">
-                    <i class="fa fa-angle-up">
                     <i class="fa fa-arrow-up"></i>
                 </a>
-
             </div>
         </footer>
     </div>
 
     <style>
-        #image{
+        #image {
             width: 80% !important;
             border-radius: 0% !important;
         }
-        .wow-box{
+
+        .wow-box {
             width: 50% !important;
             height: 150px !important;
         }
-        .wowInfo{
+
+        .wowInfo {
             width: 100% !important;
             height: 100% !important;
         }
-        .text-box{
+
+        .text-box {
             height: 150px !important;
             width: 100% !important
         }
-        #myCarousel{
+
+        #myCarousel {
             margin: 0 !important;
         }
-        .item{
+
+        .item {
             border-radius: 0% !important;
         }
-        @media only screen and (max-width:1440px){
-        .changelogout{
-            width: 130px !important;
-            
+
+        @media only screen and (max-width:1440px) {
+            .changelogout {
+                width: 130px !important;
+
+            }
         }
+
+        @media only screen and (max-width:1024px) {
+            .changelogout {
+                width: 100px !important;
+                /* margin-right: 5px !important; */
+            }
         }
-        @media only screen and (max-width:1024px){
-        .changelogout{
-            width: 100px !important;
-            /* margin-right: 5px !important; */
+
+        @media only screen and (max-width:768px) {
+            .wow-box {
+                width: 100% !important;
+                height: 120px !important;
+            }
         }
+
+        @media only screen and (max-width:425px) {
+            .text-box {
+                height: 200px !important;
+            }
         }
-        @media only screen and (max-width:768px){
-        .wow-box{
-            width: 100% !important;
-            height: 120px !important;
-        }
-        }
-        @media only screen and (max-width:425px){
-        .text-box{
-            height: 200px !important;
-        }}
-        @media only screen and (max-width:320px){
-        .text-box{
-            height: 270px !important;
-        }
+
+        @media only screen and (max-width:320px) {
+            .text-box {
+                height: 270px !important;
+            }
         }
     </style>
 

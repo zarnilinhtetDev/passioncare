@@ -1,4 +1,32 @@
 @include('landing_page.header_section')
+<style>
+    .card {
+        font-size: 1.5rem !important;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 15px !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+
+        input,
+        select,
+        textarea {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 11px !important;
+        }
+    }
+</style>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom" class="bg-light">
 
@@ -13,17 +41,20 @@
                     <div class="d-none d-lg-block" style="height:20px !important;"></div>
                     <section class="card shadow">
                         <div class="row justify-content-center my-3 px-4">
-                            <form class="form-group" action="{{ url('profile_update', Auth::user()->id) }}" method="post">
+                            <form class="form-group" action="{{ url('profile_update', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <h3 class="text-center my-4">Personal Information</h3>
-                                <div class="row">
+                                <h2 class="text-center my-4">Personal Information</h2>
+                                <div class="row mt-4">
                                     <div class="col-12 col-md-4 mt-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="name" value="{{ $patient->name ?? Auth::user()->name }}">
                                     </div>
                                     <div class="col-12 col-md-4 mt-3">
                                         <label for="name">Phone Number</label>
-                                        <input type="text" class="form-control" id="phno" name="phno" value="{{ $patient->phno ?? '' }}">
+                                        <input type="text" class="form-control" id="phno" name="phno" value="{{ $patient->phno ?? Auth::user()->phno }}">
+                                        @error('phno')
+                                        <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                        @enderror
                                     </div>
                                     <div class="col-12 col-md-4 mt-3">
                                         <label for="name">NRC Number</label>
@@ -31,10 +62,10 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-md-4 mt-3">
                                         <label for="name">Date Of Birth</label>
-                                        <input type="text" class="form-control" id="dob" name="dob" value="{{ $patient->dob ?? '' }}">
+                                        <input type="date" class="form-control" id="dob" name="dob" value="{{ $patient->dob ?? '' }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label for="name">Gender</label>
@@ -69,32 +100,55 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-md-4 mt-3">
                                         <label for="name">Blood Type</label>
                                         <input type="text" class="form-control" id="blood_type" name="blood_type" value="{{ $initial->blood_type ?? '' }}">
                                     </div>
                                     <div class="col-md-4 mt-3">
+                                        <label for="weight">Weight</label>
+                                        <input type="text" class="form-control" id="weight" name="weight" value="{{ $initial->weight ?? '' }}">
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label for="bmi">BMI</label>
+                                        <input type="text" class="form-control" id="bmi" name="bmi" value="{{ $initial->bmi ?? '' }}">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mt-3">
                                         <label for="name">City</label>
                                         <input type="text" class="form-control" id="city" name="city" value="{{ $p_address->city ?? '' }}">
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 mt-3">
-                                        <label for="name">Address</label>
-                                        <textarea class="form-control" id="address" name="address" row="2">{{ $p_address->address ?? '' }}</textarea>
+                                    <div class="col-md-4 mt-3">
+                                        <label for="state">State</label>
+                                        <input type="text" class="form-control" id="state" name="state" value="{{ $p_address->state ?? '' }}">
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
+                                    <div class="col-md-6 mt-3">
+                                        <label for="name">Address</label>
+                                        <textarea class="form-control" id="address" name="address" row="2">{{ $p_address->address ?? '' }}</textarea>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label for="new_profile">Profile</label>
+                                        <input type="file" class="form-control" id="new_profile" name="new_profile">
+                                        <input type="hidden" class="form-control" id="old_profile" name="old_profile" value="{{$patient->profile}}">
+                                        @error('profile')
+                                        <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
                                     <div class=" col-md-12 form-title mt-5">
                                         <h3 class="text-secondary">Emergency Informations</h3>
                                         <hr>
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-md-4 mt-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="contact_name" value="{{ $emergency->contact_name ?? '' }}">
@@ -109,14 +163,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class=" col-md-12 form-title mt-5">
                                         <h3 class="text-secondary">Insurance Information</h3>
                                         <hr>
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-md-3 mt-3">
                                         <label for="name">Company Name</label>
                                         <input type="text" class="form-control" id="company_name" name="company_name" value="{{ $insurance->company_name ?? '' }}">
@@ -137,7 +191,7 @@
 
                                 <div class="col-md-12 mr-auto d-flex justify-content-end mt-4">
                                     <button type="submit" class="btn btn-primary mx-4">Update</button>
-                                    <a href="{{ url('profile') }}" class="btn btn-primary ">Back</a>
+                                    <a href="{{ url('patientProfile') }}" class="btn btn-primary px-4">Back</a>
                                 </div>
                                 <div class=" mt-5">
 
@@ -150,33 +204,52 @@
             </div>
         </div>
     </div>
-    <div class="bottom-nav" style="background-color: #337AB7; position:fixed; bottom:0; width:100%; z-index: 1000; height:3%" id="bottom-nav">
-        <a href="#">
-            <i class="fas fa-home"></i>
-            Home
-        </a>
-        <a href="#">
-            <i class="fas fa-search"></i>
-            Search
-        </a>
-        <a href="#">
-            <i class="fas fa-plus"></i>
-            Add
-        </a>
-        <a href="#">
-            <i class="fas fa-heart"></i>
-            Favorites
-        </a>
-        <a href="#">
-            <i class="fas fa-user"></i>
-            Profile
-        </a>
-
-        <a href="#" class="text-dark">
-            {{-- <i class="fa fa-angle-up"> --}}
-            <i class="fa fa-arrow-up"></i>
-        </a>
-
-    </div>
+    <footer id="bottom-nav">
+        <div class="bottom-nav" style="background-color: #337AB7">
+            <a href="{{ url('/') }}">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
+            <a href="#">
+                <i class="fas fa-heart"></i>
+                Favorites
+            </a>
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
 </body>
 @include('landing_page.footer_section')

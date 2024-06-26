@@ -17,11 +17,11 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/cubeportfolio/css/cubeportfolio.min.css') }}">
-    <link href="{{ asset('css/nivo-lightbox.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/nivo-lightbox-theme/default/default.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet" media="screen" />
+    <!-- <link href="{{ asset('css/nivo-lightbox.css') }}" rel="stylesheet" /> -->
+    <!-- <link href="{{ asset('css/nivo-lightbox-theme/default/default.css') }}" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet" media="screen" /> -->
     <link href="{{ asset('css/owl.theme.css') }}" rel="stylesheet" media="screen" />
-    <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
+    <!-- <link href="{{ asset('css/animate.css') }}" rel="stylesheet" /> -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
@@ -121,7 +121,38 @@
 
     .btn {
         padding: 0.50rem 1.3rem;
-        font-size: 1.10rem;
+        /* font-size: 1.10rem; */
+    }
+
+    .modal,
+    table tr,
+    th,
+    td,
+    input,
+    select,
+    textarea {
+        font-size: 1.5rem !important;
+    }
+
+    .btn {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+
+        .modal,
+        table tr,
+        th,
+        td,
+        input,
+        select,
+        textarea {
+            font-size: 13px !important;
+        }
+
+        .btn {
+            font-size: 11px !important;
+        }
     }
 </style>
 
@@ -148,6 +179,20 @@
                     <strong>{{ session('delete') }}</strong>
                 </div>
                 @endif
+
+                @if (session('phone'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('phone') }}</strong>
+                </div>
+                @endif
+
+                @if (session('error'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ session('error') }}</strong>
+                </div>
+                @endif
                 <h1 class="mt-md-3 mt-lg-0">Hospital List</h1>
                 <button id="openModal" class="btn btn-primary mt-5">Hospital Register</button>
             </div>
@@ -157,7 +202,7 @@
                         <h2>Hospital Registration</h2>
                         <!-- <span id="closeModal" class="close">&times;</span> -->
                     </div>
-                    <form action="{{ url('hospital_register') }}" method="POST" class="mt-5 mb-2 mb-sm-0">
+                    <form action="{{ url('hospital_register') }}" method="POST" class="mt-5 mb-2 mb-sm-0" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <h4 style="text-decoration:underline;">Hospital Information</h4>
@@ -194,6 +239,9 @@
                                 <div class="form-group">
                                     <label for="hospital_phone_number">Phone Number</label>
                                     <input type="tel" class="form-control" id="hospital_phone_number" name="hospital_phone_number" placeholder="Enter Hospital phone number" required>
+                                    @error('phone')
+                                    <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
@@ -205,13 +253,30 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-12 col-md-8">
+                            <div class="col-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="hospital_image">Hospital Image</label>
+                                    <input type="file" class="form-control" id="hospital_image" name="hospital_image" placeholder="Enter Hospital Image" required>
+                                    @error('hospital_image')
+                                    <div class="error text-danger"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-md-4">
                                 <label for="hospital_google_address_link">GPS Location Address</label>
                                 <div class="input-group">
                                     <input type="hospital_google_address_link" class="form-control" id="hospital_google_address_link" name="hospital_google_address_link" placeholder="Enter Google Address Link">
                                     <button type="button" id="copyLinkBtn" class="btn btn-primary"> <i class="fa-solid fa-paperclip"></i></button>
                                 </div>
                             </div>
+                            @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                            <div class="col-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+                                </div>
+                            </div>
+                            @endif
                         </div>
 
                         <hr>
@@ -296,6 +361,7 @@
                         <thead>
                             <tr>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">No.</th>
+                                <th style="background-color: #F0F3F8" scope="col" class="text-center">Profile</th>
                                 <th style="background-color: #F0F3F8" scope="col" class="text-center">Hospital
                                     Name
                                 </th>
@@ -313,6 +379,7 @@
                             @foreach ($hospitals as $key => $hospital)
                             <tr>
                                 <th class="text-center" scope="row">{{ $key + 1 }}</th>
+                                <td class=" text-center"><a href="{{ asset('profile/'.$hospital->image) }}" target="_blank"><img src="{{asset("profile/".$hospital->image)}}" width="40" height="40" alt="hospital profile" style="border-radius:100%; border:1px solid black;"></a></td>
                                 <td class="text-center">{{ $hospital->hospital_name }}</td>
                                 <td class="text-center">{{ $hospital->hospital_phone_number }}</td>
 
@@ -339,36 +406,63 @@
 
     </div>
 
-    <div id="bottom-nav">
+    <footer id="bottom-nav">
         <div class="bottom-nav" style="background-color: #337AB7">
-            <a href="#">
+            <a href="{{ url('/') }}">
                 <i class="fas fa-home"></i>
                 Home
             </a>
-            <a href="#">
-                <i class="fas fa-search"></i>
-                Search
-            </a>
-            <a href="#">
-                <i class="fas fa-plus"></i>
-                Add
-            </a>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/hospital') }}"><i class="fa-solid fa-hospital"></i>Hospital</a>
+            @endif
+            <div class="dropdown">
+                <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-white"><i class="fa-solid fa-user"></i> {{ auth()->user()->name }}</span>
+                </a>
+                <div class="dropdown-menu " style="background-color: #F0F5F9;">
+                    @if (Auth::user()->type == 'mo' && Auth::user()->level == '1')
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('user') }}" style="width: 50px">User</a>
+                        <a class="p-1 btn changelogout text-dark" href="{{ url('calculate_time_setting') }}" style="width: 30px">Setting</a>
+                    @elseif (Auth::user()->type == 'mo' && Auth::user()->level != '1')
+                        <a href="{{route('userEdit', Auth::user()->id)}}" class="p-1 btn changelogout" style="width: 100px">Profile Edit</a>
+                    @elseif(Auth::user()->type == 'patient')
+                        <a href="{{ url('/profile') }}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @elseif(Auth::user()->type == 'hospital')
+                        <a href="{{route('hospitalProfile')}}" class="p-1 btn changelogout text-dark" style="width: 30px;">Profile</a>
+                    @endif
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="p-1 btn changelogout" style="width: 50px">
+                            <span class="text-dark">Logout</span></button>
+                    </form>
+                </div>
+            </div>
+            @if (Auth::user()->type == 'mo')
+            <a class="nav-link text-white" href="{{ url('/mo_doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @else
+            <a class="nav-link text-white" href="{{ url('/doctor') }}"><i class="fa-solid fa-user-doctor"></i>Doctor</a>
+            @endif
             <a href="#">
                 <i class="fas fa-heart"></i>
                 Favorites
             </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
+            <a href="#" class="text-dark">
+                <i class="fa fa-arrow-up"></i>
             </a>
-
-            {{-- <a href="#" class="text-dark">
-                <i class="fa fa-angle-up">
-                    <i class="fa fa-arrow-up"></i>
-            </a> --}}
-
         </div>
-    </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
